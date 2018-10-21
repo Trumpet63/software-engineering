@@ -59,7 +59,7 @@ const styles=StyleSheet.create({
         alignItems: 'stretch',
         margin: 20,
         backgroundColor: 'white',
-        borderWidth:1,
+        borderWidth:2,
     },
     RightContainer: {
         margin: 10,

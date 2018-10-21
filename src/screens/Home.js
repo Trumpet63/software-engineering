@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
-import { ScrollView,View,Text,Button, TouchableOpacity,StyleSheet,Dimensions} from 'react-native';
+import { ScrollView,View,AsyncStorage,Text,Button,Alert, TouchableOpacity,StyleSheet,Dimensions,Image} from 'react-native';
 import SelectableMenuTile from '../components/SelectableMenuTile';
+import {selected} from '../config'
 
 
-const foodItems = ["Hot Dogs", "French Fries", "Hamburger"]
-const foodItems2=["Potatoe Chips","Snickers Bar", "Prepped Salad"]
-const foodItems3=["Hamburger","Chicken Nuggets","Milkshake"]
-const foodItems4=["Chicken Alfredo","Spaghetti Marinara","Eggplant Parmesan"]
-const foodItems5=["Nachos","Tortilla Salad","Buritto Deluxe"]
-const foodItems6=["Dumplings","Borsche","Kotlets"]
-const foodItems7=["Perfect Hamburger","Cole Slaw"," Fresh Cut French Fries"]
-const foodItems8=["Crab Rangoon", "Egg Rolls","Beef Stir Fry"]
-const foodItems9=["Fried Chicken Rice", "Fried Beef Rice", "Alaskian Roll"]
-const foodItems10=["Red Curry Chicken", "Duck Curry", "Fresh Spring Rolls"]
 
+const foodItem=["Build A Meal","For this Restaurant", "And Increase Your Income"]
 
+//AsyncStorage.setItem(selected.hotDogStand,JSON.stringify(foodItems))
+//AsyncStorage.removeItem(selected.hotDogStand)
 export default class Home extends Component {
+
   constructor(props){
     super(props)
     this.state={
@@ -23,10 +18,46 @@ export default class Home extends Component {
       money:0.00,
     }
   }
+  async componentDidMount(){
+    try{
+    const data= await AsyncStorage.getItem(selected.hotDogStand)
+    const data1= await AsyncStorage.getItem(selected.quickEats)
+    const data2=await AsyncStorage.getItem(selected.fastFood)
+    const data3=await AsyncStorage.getItem(selected.Italian)
+    const data4=await AsyncStorage.getItem(selected.Mexican)
+    const data5=await AsyncStorage.getItem(selected.Russian)
+    const data6=await AsyncStorage.getItem(selected.American)
+    const data7= await AsyncStorage.getItem(selected.Chinese)
+    const data8=await AsyncStorage.getItem(selected.Hibachi)
+    const data9=await AsyncStorage.getItem(selected.Thai)
+    console.log(JSON.parse(data));
+    this.setState({
+      hotDogFoodItem: JSON.parse(data),
+      quickEatsItem: JSON.parse(data1),
+      fastFoodItem:JSON.parse(data2),
+      italianFoodItem:JSON.parse(data3),
+      mexicanFoodItem:JSON.parse(data4),
+      russianFoodItem:JSON.parse(data5),
+      americanFoodItem:JSON.parse(data6),
+      chineseFoodItem:JSON.parse(data7),
+      hibachiFoodItem:JSON.parse(data8),
+      thaiFoodItem:JSON.parse(data9),
+    })
+  }
+    catch(error){
+      console.log(error);
+    }
+   
+
+  }
   nav=(navroute)=>()=>{
     this.props.navigation.navigate(navroute);
   }
+  alert=(message)=>()=>{
+    alert(`Continue playing to unlock this restaurant you must have an income of $${message.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
+  }
   render() {
+    const{income}=this.state
     return (
       
       <View>
@@ -49,14 +80,15 @@ export default class Home extends Component {
       </View>
       </View>
       <ScrollView scrollEnabled={true} showVerticalScrollIndicator={true} keyboardDismissMode='on-drag' keyboardShouldPersistTaps={'true'}>
-
-      
+      <View>
+      <Image source={require('../assets/Background.png')} style={styles.Image}/>
+      </View>
       <SelectableMenuTile
         title="Hot Dog Stand"
         rincome="Restaurant Income: $50,000.00"
         image={require('../assets/th.jpg')}
         nav={this.nav("Builder")}
-        menuItem={foodItems}
+        menuItem={this.state.hotDogFoodItem&&this.state.hotDogFoodItem||foodItem}
         />
 
       <SelectableMenuTile
@@ -64,77 +96,76 @@ export default class Home extends Component {
         rincome="Restaurant Income: $30,000.00"
         image={require('../assets/QuickEat.jpg')}
         nav={this.nav("Builder")}
-        menuItem={foodItems2} />
-
+        menuItem={this.state.quickEatsItem&&this.state.quickEatsItem||foodItem}
+         />
+    
       <SelectableMenuTile
         title="Sandy's Fast Food"
-        over={require('../assets/LockApp.png')}
+        over={income<20000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $38,000.00"
         image={require('../assets/FastFood.jpg')}
-        nav={this.nav("Builder")}
-        menuItem={foodItems3} />
+        nav={income>20000?this.nav("Builder"):this.alert(20000)}
+        menuItem={this.state.fastFoodItem&&this.state.fastFoodItem||foodItem} 
+        />
+      
 
       <SelectableMenuTile
         title="Pappi's Italian"
-        over={require('../assets/LockApp.png')}
+        over={income<30000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $46,000.00"
         image={require('../assets/Italian.jpg')}
-        nav={this.nav("Builder")}
-        menuItem={foodItems4}/>
+        nav={income>30000?this.nav("Builder"):this.alert(30000)}
+        menuItem={this.state.italianFoodItem&&this.state.italianFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="Mexican Corner"
-        over={require('../assets/LockApp.png')}
+        over={income<40000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $57,000.00"
         image={require('../assets/Mexican.jpg')}
-        nav={this.nav("Builder")}
-        menuItem={foodItems5} />
+        nav={income>40000?this.nav("Builder"):this.alert(40000)}
+        menuItem={this.state.mexicanFoodItem&&this.state.mexicanFoodItem||foodItem} />
 
       <SelectableMenuTile
         title="Russian Bistro"
-        over={require('../assets/LockApp.png')}
+        over={income<50000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $65,000.00"
         image={require('../assets/Russian.jpg')}
-        nav={this.nav("Builder")} 
-        menuItem={foodItems6}/>
+        nav={income>50000?this.nav("Builder"):this.alert(50000)}
+        menuItem={this.state.russianFoodItem&&this.state.russianFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="American Kingdom"
-        over={require('../assets/LockApp.png')}
+        over={income<60000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $59,000.00"
         image={require('../assets/American.jpg')}
-        nav={this.nav("Builder")} 
-        menuItem={foodItems7}/>
+        nav={income>60000?this.nav("Builder"):this.alert(60000)}
+        menuItem={this.state.americanFoodItem&&this.state.americanFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="Chinese Buffet"
-        over={require('../assets/LockApp.png')}
+        over={income<70000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $65,000.00"
         image={require('../assets/Buffet.jpg')}
-        nav={this.nav("Builder")}
-        menuItem={foodItems8} />
+        nav={income>70000?this.nav("Builder"):this.alert(70000)}
+        menuItem={this.state.chineseFoodItem&&this.state.chineseFoodItem||foodItem} />
 
       <SelectableMenuTile
         title="Hibachi"
-        over={require('../assets/LockApp.png')}
+        over={income<80000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $71,000.00"
         image={require('../assets/Hibachi.jpg')}
-        nav={this.nav("Builder")} 
-        menuItem={foodItems9}/>
+        nav={income>80000?this.nav("Builder"):this.alert(80000)}
+        menuItem={this.state.hibachiFoodItem&&this.state.hibachiFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="Thyme Thai"
-        over={require('../assets/LockApp.png')}
+        over={income<90000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $89,000.00"
         image={require('../assets/Thai.jpg')}
-        nav={this.nav("Builder")} 
-        menuItem={foodItems10}/>
+        nav={income>90000?this.nav("Builder"):this.alert(90000)} 
+        menuItem={this.state.thaiFoodItem&&this.state.thaiFoodItem||foodItem}/>
         
       </ScrollView> 
-    
-     
-
-      
       </View>
       
     )
@@ -177,6 +208,14 @@ View:
   bottom:5,
   
 },
+Image:
+{
+  height:2025,
+  width:Dimensions.get('window').width,
+  position:'absolute',
+  resizeMode:'cover',
+
+}
 
 
 
