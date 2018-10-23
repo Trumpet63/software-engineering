@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
-import Home from './src/Home';
-import Collection from "./src/Collection";
-import Builder from "./src/Builder";
+import Home from './src/screens/Home';
+import Collection from "./src/screens/Collection";
+import Builder from "./src/screens/Builder";
 import {createStackNavigator} from "react-navigation";
 
 export default class App extends Component {
