@@ -93,76 +93,77 @@ export default class Home extends Component {
 
       <SelectableMenuTile
         title="Quick Eats"
+        over={income<5000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $30,000.00"
         image={require('../assets/QuickEat.jpg')}
-        nav={this.nav("Builder")}
+        nav={income>5000?this.nav("Builder"):this.alert(5000)}
         menuItem={this.state.quickEatsItem&&this.state.quickEatsItem||foodItem}
          />
     
       <SelectableMenuTile
         title="Sandy's Fast Food"
-        over={income<20000&&require('../assets/LockApp.png')}
+        over={income<220000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $38,000.00"
         image={require('../assets/FastFood.jpg')}
-        nav={income>20000?this.nav("Builder"):this.alert(20000)}
+        nav={income>220000?this.nav("Builder"):this.alert(220000)}
         menuItem={this.state.fastFoodItem&&this.state.fastFoodItem||foodItem} 
         />
       
 
       <SelectableMenuTile
         title="Pappi's Italian"
-        over={income<30000&&require('../assets/LockApp.png')}
+        over={income<1179000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $46,000.00"
         image={require('../assets/Italian.jpg')}
-        nav={income>30000?this.nav("Builder"):this.alert(30000)}
+        nav={income>1179000?this.nav("Builder"):this.alert(1179000)}
         menuItem={this.state.italianFoodItem&&this.state.italianFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="Mexican Corner"
-        over={income<40000&&require('../assets/LockApp.png')}
+        over={income<2881000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $57,000.00"
         image={require('../assets/Mexican.jpg')}
-        nav={income>40000?this.nav("Builder"):this.alert(40000)}
+        nav={income>2881000?this.nav("Builder"):this.alert(2881000)}
         menuItem={this.state.mexicanFoodItem&&this.state.mexicanFoodItem||foodItem} />
 
       <SelectableMenuTile
         title="Russian Bistro"
-        over={income<50000&&require('../assets/LockApp.png')}
+        over={income<5327000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $65,000.00"
         image={require('../assets/Russian.jpg')}
-        nav={income>50000?this.nav("Builder"):this.alert(50000)}
+        nav={income>5327000?this.nav("Builder"):this.alert(5327000)}
         menuItem={this.state.russianFoodItem&&this.state.russianFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="American Kingdom"
-        over={income<60000&&require('../assets/LockApp.png')}
+        over={income<8517000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $59,000.00"
         image={require('../assets/American.jpg')}
-        nav={income>60000?this.nav("Builder"):this.alert(60000)}
+        nav={income>8517000?this.nav("Builder"):this.alert(8517000)}
         menuItem={this.state.americanFoodItem&&this.state.americanFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="Chinese Buffet"
-        over={income<70000&&require('../assets/LockApp.png')}
+        over={income<12450000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $65,000.00"
         image={require('../assets/Buffet.jpg')}
-        nav={income>70000?this.nav("Builder"):this.alert(70000)}
+        nav={income>12450000?this.nav("Builder"):this.alert(12450000)}
         menuItem={this.state.chineseFoodItem&&this.state.chineseFoodItem||foodItem} />
 
       <SelectableMenuTile
         title="Hibachi"
-        over={income<80000&&require('../assets/LockApp.png')}
+        over={income<17126000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $71,000.00"
         image={require('../assets/Hibachi.jpg')}
-        nav={income>80000?this.nav("Builder"):this.alert(80000)}
+        nav={income>17126000?this.nav("Builder"):this.alert(17126000)}
         menuItem={this.state.hibachiFoodItem&&this.state.hibachiFoodItem||foodItem}/>
 
       <SelectableMenuTile
         title="Thyme Thai"
-        over={income<90000&&require('../assets/LockApp.png')}
+        over={income<22546000&&require('../assets/LockApp.png')}
         rincome="Restaurant Income: $89,000.00"
         image={require('../assets/Thai.jpg')}
-        nav={income>90000?this.nav("Builder"):this.alert(90000)} 
+        nav={income>22546000?this.nav("Builder"):this.alert(22546000)} 
         menuItem={this.state.thaiFoodItem&&this.state.thaiFoodItem||foodItem}/>
         
       </ScrollView> 
