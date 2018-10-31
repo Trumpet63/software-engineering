@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text,TouchableOpacity } from 'react-native';
 
-
-
-
-
 export default class SelectableMenuTile extends Component {
     constructor(props) {
         super(props)
@@ -38,9 +34,9 @@ export default class SelectableMenuTile extends Component {
                     <View style={styles.meals}>
                         {
                             this.props.menuItem &&
-                            this.props.menuItem.map((item)=> {
+                            this.props.menuItem.map((item, id)=> {
                             return(
-                                <Text style={styles.item}>{item}</Text>
+                                <Text style={styles.item} key={id}>{item}</Text>
                             )
                         })}
                     

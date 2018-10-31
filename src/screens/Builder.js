@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Dimensions, StyleSheet, Image, Button } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
+import getNewRecipe from '../functions/recipes';
 
 export default class Builder extends Component {
   nav = (navroute) => () => {
@@ -11,8 +12,9 @@ export default class Builder extends Component {
     super(props);
 
     this.state = {
-      selectItem: {},
+      selectedItem: {},
       mealSummary: [],
+      mealsAvailable: [],
       data: [
         {
           label: '150%',
@@ -28,57 +30,65 @@ export default class Builder extends Component {
         }
       ]
     };
+
+    for (var i = 0; i < 5; i++) {
+      getNewRecipe((result) => {
+        this.setState({
+          mealsAvailable: [
+            ...this.state.mealsAvailable,
+            result,
+          ],
+        });
+      });
+    }
   }
 
   addToMealSummary = () => {
-    this.setState({
-      mealSummary: [
-        ...mealSummary,
-        this.state.selectItem
-      ],
-    });
+    if (this.state.mealSummary.length < 3) {
+      this.setState({
+        mealSummary: [
+          ...this.state.mealSummary,
+          this.state.selectedItem,
+        ],
+        selectedItem: {},
+      });
+    }
+    else {
+      alert("Your meal summary is already full...");
+    }
   }
 
   render() {
-    var imag = [];
-    imag.push({
-      id: 'Herbed-Haricots-Verts-627461',
-      name: 'Herbed Haricots Verts',
-      image: 'http://lh5.ggpht.com/M3mylUIV1Lk9R5mV4eOjICTUDb5zEY7Y0okoxrqPRUMN_8-Th_gfOeKYC65fL4uk_nkqc-aJ37Qj8s54Es_8=s90-c',
-      calories: 122,
-      protien: 33,
-      sodium: 145,
-      carbs: 12,
-    });
-
     var images = [];
 
-    for (let i = 0; i < imag.length; i++) {
-      console.log(imag[i].image);
+    this.state.mealsAvailable.map((meal, i) => {
       images.push(
         <TouchableOpacity
           key={i}
           style={styles.Image}
-          onPress={() => (this.setState({ selectItem: imag[i] }))}>
+          onPress={() => (this.setState({ selectedItem: meal }))}>
           <Image style={styles.Image}
-            source={imag[i].image} />
+            source={{ uri: meal.image }} />
         </TouchableOpacity>
-      )
-    }
+      );
+    });
     return (
       <View>
         <View style={styles.FirstContainer}>
           <Button title='Add to summary' onPress={this.addToMealSummary} />
           <View style={styles.dropzone}>
             <Image style={styles.Image}
-              source={this.state.selectItem.image} />
+              source={{ uri: this.state.selectedItem.image }} />
           </View>
           <View style={styles.portionSize}>
             <RadioGroup radioButtons={this.state.data} />
           </View>
         </View>
         <View style={styles.mealSummary}>
-          {this.state.mealSummary.image}
+          {this.state.mealSummary.map((meal, i) => {
+            console.log(meal);
+            return (<Image style={styles.Image} source={{ uri: meal.image }} key={i} />);
+          })}
         </View>
         <View style={styles.SecondContainer}>
           {images}
@@ -90,7 +100,7 @@ export default class Builder extends Component {
         </View>
 
 
-      </View>
+      </View >
 
     );
   }
