@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Slider } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import getNewRecipe from '../functions/recipes';
 import { selected } from '../config';
@@ -31,30 +31,31 @@ export default class Builder extends Component {
         }
       ],
 
-      mealsAvailable: [recipe1 = {
-        name: 'Herbed Haricots Verts',
-        image: 'http://lh3.ggpht.com/L6mfpqHtlXaY_Kx1jtDc-jGTZEAQeIuKhNhY1JgAxbWlXgFbZ2DxycB4noKXbMuQXCciWw-dbL9PlRf9aWLkvg=s180'
-      },
+      mealsAvailable: [
+        recipe1 = {
+          name: 'Herbed Haricots Verts',
+          image: 'http://lh3.ggpht.com/L6mfpqHtlXaY_Kx1jtDc-jGTZEAQeIuKhNhY1JgAxbWlXgFbZ2DxycB4noKXbMuQXCciWw-dbL9PlRf9aWLkvg=s180'
+        },
 
-      recipe2 = {
-        name: '7 Ways To Pimp Your Pimms Cup',
-        image: 'https://lh3.googleusercontent.com/uIBcO9xE4iP7OI6FQNdJU3oGEoNmJ2NjoWOfhnSSRyImwAO-xcRx-vSLjQrJjKwDq0uyv12Iu-xlbxr8EwBHPA=s180'
-      },
+        recipe2 = {
+          name: '7 Ways To Pimp Your Pimms Cup',
+          image: 'https://lh3.googleusercontent.com/uIBcO9xE4iP7OI6FQNdJU3oGEoNmJ2NjoWOfhnSSRyImwAO-xcRx-vSLjQrJjKwDq0uyv12Iu-xlbxr8EwBHPA=s180'
+        },
 
-      recipe3 = {
-        name: 'Cinnamon Honey Butter',
-        image: 'https://lh3.googleusercontent.com/qWD1PzmtY_Q_yaAAnS6WMKZ2vDV9dHg0TIzET-DkrN5AQJVAPtWepRn3aFc7OS5Bn5nAxVT40ZEEzSTMD4XQgg=s180'
-      },
+        recipe3 = {
+          name: 'Cinnamon Honey Butter',
+          image: 'https://lh3.googleusercontent.com/qWD1PzmtY_Q_yaAAnS6WMKZ2vDV9dHg0TIzET-DkrN5AQJVAPtWepRn3aFc7OS5Bn5nAxVT40ZEEzSTMD4XQgg=s180'
+        },
 
-      recipe4 = {
-        name: 'Keto Spaghetti Squash Au Gratin',
-        image: 'http://lh3.googleusercontent.com/-eO6Fi2BrQHCIMQm0IQpvG5Z7ssaIogDodLWhdubtM7-QfGyCu4IleK0mfxjaHuvvsqfgnyS1mjt63iChzkcxw=s180'
-      },
+        recipe4 = {
+          name: 'Keto Spaghetti Squash Au Gratin',
+          image: 'http://lh3.googleusercontent.com/-eO6Fi2BrQHCIMQm0IQpvG5Z7ssaIogDodLWhdubtM7-QfGyCu4IleK0mfxjaHuvvsqfgnyS1mjt63iChzkcxw=s180'
+        },
 
-      recipe5 = {
-        name: 'Peanut Butter and Jelly Puffs',
-        image: 'https://lh3.googleusercontent.com/EtSnU_SpAPeRYIn1uaEPR68vO96LfxhEfOBRI2cz8hE7N7uEImruvetUUSNqJPsBw3-Wpy6Z93ncNY3HhKY7tA=s180'
-      }]
+        recipe5 = {
+          name: 'Peanut Butter and Jelly Puffs',
+          image: 'https://lh3.googleusercontent.com/EtSnU_SpAPeRYIn1uaEPR68vO96LfxhEfOBRI2cz8hE7N7uEImruvetUUSNqJPsBw3-Wpy6Z93ncNY3HhKY7tA=s180'
+        }]
     };
 
     /*for (var i = 0; i < 5; i++) {
@@ -69,27 +70,6 @@ export default class Builder extends Component {
     }*/
   }
 
-  addToMealSummary = () => {
-    if (this.state.mealSummary.length < 3) {
-      this.setState({
-        mealSummary: [
-          ...this.state.mealSummary,
-          this.state.selectedItem,
-          /*this.state.mealsAvailable.map((meal, i) => {
-          <TouchableOpacity style={styles.Image}
-                            onPress={ () => (this.setState({selectedItem: meal}))}>
-              <Image style={styles.Image}
-                     source={{uri: meal.image}}/>
-          </TouchableOpacity>
-          })*/
-        ],
-        selectedItem: {},
-      });
-    }
-    else {
-      alert("Your meal summary is already full...");
-    }
-  }
   async componentDidMount() {
     try {
       const data = await AsyncStorage.getItem(selected.clicked)
@@ -101,53 +81,70 @@ export default class Builder extends Component {
     catch (error) {
       console.log(error);
     }
-
-
   }
-  removeFromMealSummary = () => {
-    this.state.mealSummary.splice(this.state.mealSummary.indexOf(this.state.selectedItem), 1);
-    this.setState({
-      //mealSummary: array,
-      selectedItem: {}
-    });
 
+  addToSelectedItem = (meal, action) => {
+    this.setState({
+      selectedItem: meal,
+      button: action,
+    });
+  }
+
+  addToMealSummary = () => {
+    if (this.state.mealSummary.length < 3) {
+      this.setState({
+        mealSummary: [
+          ...this.state.mealSummary,
+          this.state.selectedItem,
+        ],
+        mealsAvailable: this.state.mealsAvailable.filter((item) => { return item.name != this.state.selectedItem.name }),
+        selectedItem: {},
+      });
+    }
+    else {
+      alert("Your meal summary is already full...");
+    }
+  }
+
+  removeFromMealSummary = () => {
+    this.setState({
+      mealsAvailable: [
+        this.state.selectedItem,
+        ...this.state.mealsAvailable,
+      ],
+      mealSummary: this.state.mealSummary.filter((item) => { return item.name != this.state.selectedItem.name }),
+      selectedItem: {},
+    });
+  }
+
+  resetMealSummary = () => {
+    this.setState({
+      mealsAvailable: [
+        ...this.state.mealSummary,
+        ...this.state.mealsAvailable,
+      ],
+      mealSummary: [],
+      selectedItem: {},
+    });
   }
 
   renderButton = () => {
-    if (this.state.button == 'remove') {
+    if (this.state.button == 'remove')
       return (<Button title='Remove' onPress={this.removeFromMealSummary} />);
-    }
-
-    else {
+    else
       return (<Button title='Add' onPress={this.addToMealSummary} />);
-    }
   }
 
   render() {
-
-    var images = [];
-
-    this.state.mealsAvailable.map((meal, i) => {
-      images.push(
-        <TouchableOpacity
-          key={i}
-          style={styles.Image}
-          onPress={() => (this.setState({ selectedItem: meal, button: 'add' }))}>
-          <Image style={styles.Image}
-            source={{ uri: meal.image }} />
-        </TouchableOpacity>
-      );
-    });
-
     return (
-      <View>
-        <Image source={this.state.clicked == "hotDog" && require('../assets/th.jpg')} style={styles.Crazy} />
+      <View style={styles.BuilderContainer}>
+        <Image source={require('../assets/th.jpg')} style={styles.Crazy} />
         <View style={styles.FirstContainer}>
           <View style={styles.add_remove}>
             {this.renderButton()}
           </View>
           <View style={styles.reset}>
-            <Button title='Reset' onPress={() => (this.setState({ selectedItem: {}, mealSummary: [] }))} />
+            <Button title='Reset' onPress={this.resetMealSummary} />
           </View>
           <View style={styles.dropzone}>
             <Image style={styles.Image}
@@ -161,7 +158,7 @@ export default class Builder extends Component {
           {this.state.mealSummary.map((meal, i) => {
             return (<TouchableOpacity style={styles.Image}
               key={i}
-              onPress={() => (this.setState({ selectedItem: meal, button: 'remove' }))}>
+              onPress={() => {this.addToSelectedItem(meal, 'remove');}}>
               <Image style={styles.Image}
                 source={{ uri: meal.image }} />
             </TouchableOpacity>);
@@ -169,7 +166,19 @@ export default class Builder extends Component {
         </View>
         <ScrollView style={styles.SecondContainerScrollView}>
           <View style={styles.SecondContainer}>
-            {images}
+            {
+              this.state.mealsAvailable.map((meal, i) => {
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={styles.Image}
+                    onPress={() => {this.addToSelectedItem(meal, 'add');}} >
+                    <Image style={styles.Image}
+                      source={{ uri: meal.image }} />
+                  </TouchableOpacity>
+                );
+              })
+            }
           </View>
         </ScrollView>
 
@@ -187,7 +196,8 @@ export default class Builder extends Component {
 
 let Window = Dimensions.get('window');
 const styles = StyleSheet.create({
-
+  BuilderContainer: {
+  },
 
   FirstContainer: {
     flexDirection: 'row',
