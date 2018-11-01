@@ -88,6 +88,7 @@ export default class Home extends Component {
         rincome="Restaurant Income: $50,000.00"
         image={require('../assets/th.jpg')}
         nav={this.nav("Builder")}
+        onPress={()=> (AsyncStorage.setItem(selected.clicked,JSON.stringify(hotDog)))}
         menuItem={this.state.hotDogFoodItem&&this.state.hotDogFoodItem||foodItem}
         />
 

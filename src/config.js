@@ -9,4 +9,5 @@ export const selected={
     Chinese:"Chinese",
     Hibachi:"Hibachi",
     Thai:"Thai",
+    clicked:"restaurantImage",
   }
