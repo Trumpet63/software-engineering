@@ -1,153 +1,153 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\fc1e88bd50d3652accff09f321c10bef\AndroidManifest.xml:2:1-15:12
-MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\9dabc0a68e364bca60ac6d21ebca0021\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\69a5233164810ed1eff583201d18bc1a\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\13a4c7bf0a11fff3980cf80bb397c3c8\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bdfbd5e9a7def60e2e365c06c5550d89\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\6b8d9d99e474e0355b0ce0cc062cfea3\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\828e7ec0c7fe778e0159fa516c55c9a4\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\1d390a285fd43b7d0f3c775094e13ecf\AndroidManifest.xml:17:1-22:12
-MERGED from [com.facebook.fresco:fresco:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\fresco-1.10.0.aar\66e185bbf9dee5160134973c771d7a6b\AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-okhttp3-1.10.0.aar\7ca8aad536137eefa8f9dbd293345055\AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:drawee:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\drawee-1.10.0.aar\b3cea50af49b40afb98a4463a3cebc60\AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-1.10.0.aar\4d1d1743c758ebcef1c8a19b8491a211\AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-base-1.10.0.aar\85ecaeb9a402081ea0087151625448ce\AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\6ce38310ccc9023b183908d67bfa1458\AndroidManifest.xml:2:1-13:12
-MERGED from [org.webkit:android-jsc:r174650] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\android-jsc-r174650.aar\543b2844701429b32eb97057f1e338cb\AndroidManifest.xml:1:1-3:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\8709d8d89617884460f8c908ef05f9a5\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\1eb5fa3315942312ee005a318e7d8f7f\AndroidManifest.xml:17:1-22:12
-MERGED from [com.facebook.fresco:fbcore:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\fbcore-1.10.0.aar\dc21f7c9fa68c28b17f96e8a350ce6ac\AndroidManifest.xml:2:1-9:12
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\b5630d123796a0720e48fe9cdbd9e675\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\24a66b181afd66a151373d9f85e62454\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\5b998f17bcd9b20047d339e799a4ccd5\AndroidManifest.xml:2:1-15:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\b033c85e4ed19725791dd5b080db1d99\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\6666d4e3a0eeb15f84c8b37095283592\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\16fff675928c6449fd3e8dcc7f59626f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\d0c9c144fddb933d2c388d14f1cf637c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\0626d77abb8eeea884669b1024a7692a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\51960b2c4a3ef5a3714c607b662eeb54\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\41c0086d73b12147b33350148190919f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.facebook.fresco:fresco:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\fresco-1.10.0.aar\dd4d26bcebe5a32e4815cc0463e6a37b\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-okhttp3-1.10.0.aar\2c58b4d480fa8fd7d5430ea346870f45\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:drawee:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\drawee-1.10.0.aar\abe404a737ec43016c86efb2e6da7d32\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-1.10.0.aar\bb14804a0aadd39b82a1f1ef3c9a5e76\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-base-1.10.0.aar\43965cb4185466a7c729a14903db3e5b\AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\282a0d289fc5e5f32410944271125e1f\AndroidManifest.xml:2:1-13:12
+MERGED from [org.webkit:android-jsc:r174650] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\android-jsc-r174650.aar\7850d46c54ade43977aec281261ac72b\AndroidManifest.xml:1:1-3:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\bfa7cbe9786e70f276afa61794fff33a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f2d45e86e8ad79bddbd3da5b406511f9\AndroidManifest.xml:17:1-22:12
+MERGED from [com.facebook.fresco:fbcore:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\fbcore-1.10.0.aar\c65bb28e25a600c888f4d1cd33aed6c0\AndroidManifest.xml:2:1-9:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\fb61cbd208a2e4df1460d10969b39674\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\18185be22665046281bcd1297b232cb0\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
 	package
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:2:5-23
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:2:5-23
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:4:5-67
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:4:5-67
 	android:name
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:4:22-64
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:4:22-64
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:5:5-77
-MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\fc1e88bd50d3652accff09f321c10bef\AndroidManifest.xml:11:5-78
-MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\fc1e88bd50d3652accff09f321c10bef\AndroidManifest.xml:11:5-78
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:5:5-77
+MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\5b998f17bcd9b20047d339e799a4ccd5\AndroidManifest.xml:11:5-78
+MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\5b998f17bcd9b20047d339e799a4ccd5\AndroidManifest.xml:11:5-78
 	android:name
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:5:22-75
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:5:22-75
 application
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:7:5-24:19
-MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\fc1e88bd50d3652accff09f321c10bef\AndroidManifest.xml:13:5-20
-MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\fc1e88bd50d3652accff09f321c10bef\AndroidManifest.xml:13:5-20
-MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\6ce38310ccc9023b183908d67bfa1458\AndroidManifest.xml:11:5-20
-MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\6ce38310ccc9023b183908d67bfa1458\AndroidManifest.xml:11:5-20
-MERGED from [org.webkit:android-jsc:r174650] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\android-jsc-r174650.aar\543b2844701429b32eb97057f1e338cb\AndroidManifest.xml:2:3-17
-MERGED from [org.webkit:android-jsc:r174650] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\android-jsc-r174650.aar\543b2844701429b32eb97057f1e338cb\AndroidManifest.xml:2:3-17
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:7:5-24:19
+MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\5b998f17bcd9b20047d339e799a4ccd5\AndroidManifest.xml:13:5-20
+MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\5b998f17bcd9b20047d339e799a4ccd5\AndroidManifest.xml:13:5-20
+MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\282a0d289fc5e5f32410944271125e1f\AndroidManifest.xml:11:5-20
+MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\282a0d289fc5e5f32410944271125e1f\AndroidManifest.xml:11:5-20
+MERGED from [org.webkit:android-jsc:r174650] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\android-jsc-r174650.aar\7850d46c54ade43977aec281261ac72b\AndroidManifest.xml:2:3-17
+MERGED from [org.webkit:android-jsc:r174650] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\android-jsc-r174650.aar\7850d46c54ade43977aec281261ac72b\AndroidManifest.xml:2:3-17
 	android:label
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:9:7-39
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:9:7-39
 	android:icon
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:10:7-41
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:10:7-41
 	android:allowBackup
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:11:7-34
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:11:7-34
 	android:theme
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:12:7-38
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:12:7-38
 	android:name
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:8:7-38
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:8:7-38
 activity#com.menu.MainActivity
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:13:7-22:18
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:13:7-22:18
 	android:label
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:15:9-41
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:15:9-41
 	android:windowSoftInputMode
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:17:9-51
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:17:9-51
 	android:configChanges
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:16:9-79
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:16:9-79
 	android:name
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:14:9-37
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:14:9-37
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:18:9-21:25
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:18:9-21:25
 action#android.intent.action.MAIN
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:19:13-65
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:19:13-65
 	android:name
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:19:21-62
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:19:21-62
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:20:13-73
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:20:13-73
 	android:name
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:20:23-70
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:20:23-70
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:23:7-84
+ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:23:7-84
 	android:name
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:23:17-81
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:23:17-81
 uses-sdk
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\fc1e88bd50d3652accff09f321c10bef\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\fc1e88bd50d3652accff09f321c10bef\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\9dabc0a68e364bca60ac6d21ebca0021\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\9dabc0a68e364bca60ac6d21ebca0021\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\69a5233164810ed1eff583201d18bc1a\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\69a5233164810ed1eff583201d18bc1a\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\13a4c7bf0a11fff3980cf80bb397c3c8\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\13a4c7bf0a11fff3980cf80bb397c3c8\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bdfbd5e9a7def60e2e365c06c5550d89\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\bdfbd5e9a7def60e2e365c06c5550d89\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\6b8d9d99e474e0355b0ce0cc062cfea3\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\6b8d9d99e474e0355b0ce0cc062cfea3\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\828e7ec0c7fe778e0159fa516c55c9a4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\828e7ec0c7fe778e0159fa516c55c9a4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\1d390a285fd43b7d0f3c775094e13ecf\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:27.1.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\1d390a285fd43b7d0f3c775094e13ecf\AndroidManifest.xml:20:5-44
-MERGED from [com.facebook.fresco:fresco:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\fresco-1.10.0.aar\66e185bbf9dee5160134973c771d7a6b\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fresco:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\fresco-1.10.0.aar\66e185bbf9dee5160134973c771d7a6b\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-okhttp3-1.10.0.aar\7ca8aad536137eefa8f9dbd293345055\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-okhttp3-1.10.0.aar\7ca8aad536137eefa8f9dbd293345055\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:drawee:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\drawee-1.10.0.aar\b3cea50af49b40afb98a4463a3cebc60\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:drawee:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\drawee-1.10.0.aar\b3cea50af49b40afb98a4463a3cebc60\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-1.10.0.aar\4d1d1743c758ebcef1c8a19b8491a211\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-1.10.0.aar\4d1d1743c758ebcef1c8a19b8491a211\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-base-1.10.0.aar\85ecaeb9a402081ea0087151625448ce\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\imagepipeline-base-1.10.0.aar\85ecaeb9a402081ea0087151625448ce\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\6ce38310ccc9023b183908d67bfa1458\AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\6ce38310ccc9023b183908d67bfa1458\AndroidManifest.xml:7:5-9:41
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\8709d8d89617884460f8c908ef05f9a5\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\8709d8d89617884460f8c908ef05f9a5\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\1eb5fa3315942312ee005a318e7d8f7f\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\1eb5fa3315942312ee005a318e7d8f7f\AndroidManifest.xml:20:5-44
-MERGED from [com.facebook.fresco:fbcore:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\fbcore-1.10.0.aar\dc21f7c9fa68c28b17f96e8a350ce6ac\AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fbcore:1.10.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\fbcore-1.10.0.aar\dc21f7c9fa68c28b17f96e8a350ce6ac\AndroidManifest.xml:5:5-7:41
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\b5630d123796a0720e48fe9cdbd9e675\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\b5630d123796a0720e48fe9cdbd9e675\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\24a66b181afd66a151373d9f85e62454\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.0] C:\Users\feldo\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\24a66b181afd66a151373d9f85e62454\AndroidManifest.xml:20:5-44
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\5b998f17bcd9b20047d339e799a4ccd5\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.57.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\react-native-0.57.1.aar\5b998f17bcd9b20047d339e799a4ccd5\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\b033c85e4ed19725791dd5b080db1d99\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\b033c85e4ed19725791dd5b080db1d99\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\6666d4e3a0eeb15f84c8b37095283592\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\6666d4e3a0eeb15f84c8b37095283592\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\16fff675928c6449fd3e8dcc7f59626f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\16fff675928c6449fd3e8dcc7f59626f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\d0c9c144fddb933d2c388d14f1cf637c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\d0c9c144fddb933d2c388d14f1cf637c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\0626d77abb8eeea884669b1024a7692a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\0626d77abb8eeea884669b1024a7692a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\51960b2c4a3ef5a3714c607b662eeb54\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\51960b2c4a3ef5a3714c607b662eeb54\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\41c0086d73b12147b33350148190919f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\41c0086d73b12147b33350148190919f\AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.fresco:fresco:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\fresco-1.10.0.aar\dd4d26bcebe5a32e4815cc0463e6a37b\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\fresco-1.10.0.aar\dd4d26bcebe5a32e4815cc0463e6a37b\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-okhttp3-1.10.0.aar\2c58b4d480fa8fd7d5430ea346870f45\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-okhttp3-1.10.0.aar\2c58b4d480fa8fd7d5430ea346870f45\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\drawee-1.10.0.aar\abe404a737ec43016c86efb2e6da7d32\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\drawee-1.10.0.aar\abe404a737ec43016c86efb2e6da7d32\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-1.10.0.aar\bb14804a0aadd39b82a1f1ef3c9a5e76\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-1.10.0.aar\bb14804a0aadd39b82a1f1ef3c9a5e76\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-base-1.10.0.aar\43965cb4185466a7c729a14903db3e5b\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\imagepipeline-base-1.10.0.aar\43965cb4185466a7c729a14903db3e5b\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\282a0d289fc5e5f32410944271125e1f\AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.5.1] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\soloader-0.5.1.aar\282a0d289fc5e5f32410944271125e1f\AndroidManifest.xml:7:5-9:41
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\bfa7cbe9786e70f276afa61794fff33a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\bfa7cbe9786e70f276afa61794fff33a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f2d45e86e8ad79bddbd3da5b406511f9\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\f2d45e86e8ad79bddbd3da5b406511f9\AndroidManifest.xml:20:5-44
+MERGED from [com.facebook.fresco:fbcore:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\fbcore-1.10.0.aar\c65bb28e25a600c888f4d1cd33aed6c0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:1.10.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\fbcore-1.10.0.aar\c65bb28e25a600c888f4d1cd33aed6c0\AndroidManifest.xml:5:5-7:41
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\fb61cbd208a2e4df1460d10969b39674\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\fb61cbd208a2e4df1460d10969b39674\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\18185be22665046281bcd1297b232cb0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\NOCon\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\18185be22665046281bcd1297b232cb0\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-IMPLIED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 uses-permission#android.permission.READ_PHONE_STATE
-IMPLIED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
+IMPLIED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc has a targetSdkVersion < 4
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-IMPLIED from C:\Users\feldo\Menu\android\app\src\main\AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
+IMPLIED from C:\Users\NOCon\Desktop\School\software\software-engineering\android\app\src\main\AndroidManifest.xml:1:1-26:12 reason: org.webkit.android_jsc requested WRITE_EXTERNAL_STORAGE
