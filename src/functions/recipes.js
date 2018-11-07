@@ -64,4 +64,4 @@ function findNutritionValue(recipe, nutrient) {
 	return value;
 }
 
-module.exports = getNewRecipe;
+export {getNewRecipe}
