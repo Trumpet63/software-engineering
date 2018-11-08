@@ -12,11 +12,11 @@ var getNewRecipe = function (callback) {
 		}
 	).then(function (info) {
 		return info.data.matches[Math.floor(Math.random() * 100)].id;
-	}).then(function (id){
-		getRecipeDetails(id).then(function(recipe){
+	}).then(function (id) {
+		getRecipeDetails(id).then(function (recipe) {
 			callback(recipe);
 		});
-	}).catch(function() {
+	}).catch(function () {
 		console.error("Unable to retrieve a new recipe.\nPlease try again later.");
 	});
 }
@@ -32,16 +32,16 @@ function getRecipeDetails(recipeId) {
 	).then(function (info) {
 		var item = info.data;
 		var recipe = {
-			id: item.id,
-			name: item.name,
-			servings: item.yield,
+			id: cleanText(item.id),
+			name: cleanText(item.name),
 			image: getRecipeImage(item),
+			ingredients: cleanText(item.ingredients),
+			directions: cleanText(item.directions),
 			calories: findNutritionValue(item, 'ENERC_KCAL'),
 			protein: findNutritionValue(item, 'PROCNT'),
 			sodium: findNutritionValue(item, 'NA'),
 			carbs: findNutritionValue(item, 'CHOCDF'),
 		}
-
 		return recipe;
 	});
 }
@@ -64,4 +64,9 @@ function findNutritionValue(recipe, nutrient) {
 	return value;
 }
 
-export {getNewRecipe}
+function cleanText(text) {
+	text = text.replace(/[^-a-zA-Z0-9 '",.!?$;:+()]/g, '');
+	return text;
+}
+
+export { getNewRecipe }
