@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Slider} from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import getNewRecipe from '../functions/recipes';
 import { selected } from '../config';
@@ -13,47 +13,55 @@ export default class Builder extends Component {
     super(props);
 
     this.state = {
+      percent: '100%',
+      value: 1,
+      text: '',
       button: '',
       selectedItem: {},
       mealSummary: [],
-      data: [
-        {
-          label: '150%',
-          size: 15
-        },
-        {
-          label: '100%',
-          size: 15
-        },
-        {
-          label: '50%',
-          size: 15
-        }
-      ],
-
       mealsAvailable: [recipe1 = {
         name: 'Herbed Haricots Verts',
-        image: 'http://lh3.ggpht.com/L6mfpqHtlXaY_Kx1jtDc-jGTZEAQeIuKhNhY1JgAxbWlXgFbZ2DxycB4noKXbMuQXCciWw-dbL9PlRf9aWLkvg=s180'
+        image: 'http://lh3.ggpht.com/L6mfpqHtlXaY_Kx1jtDc-jGTZEAQeIuKhNhY1JgAxbWlXgFbZ2DxycB4noKXbMuQXCciWw-dbL9PlRf9aWLkvg=s180',
+        calories: 423,
+        protein: 23,
+        sodium: 555, 
+        carbs:323
       },
 
       recipe2 = {
         name: '7 Ways To Pimp Your Pimms Cup',
-        image: 'https://lh3.googleusercontent.com/uIBcO9xE4iP7OI6FQNdJU3oGEoNmJ2NjoWOfhnSSRyImwAO-xcRx-vSLjQrJjKwDq0uyv12Iu-xlbxr8EwBHPA=s180'
+        image: 'https://lh3.googleusercontent.com/uIBcO9xE4iP7OI6FQNdJU3oGEoNmJ2NjoWOfhnSSRyImwAO-xcRx-vSLjQrJjKwDq0uyv12Iu-xlbxr8EwBHPA=s180',
+        calories: 423,
+        protein: 23,
+        sodium: 555, 
+        carbs:323
       },
 
       recipe3 = {
         name: 'Cinnamon Honey Butter',
-        image: 'https://lh3.googleusercontent.com/qWD1PzmtY_Q_yaAAnS6WMKZ2vDV9dHg0TIzET-DkrN5AQJVAPtWepRn3aFc7OS5Bn5nAxVT40ZEEzSTMD4XQgg=s180'
+        image: 'https://lh3.googleusercontent.com/qWD1PzmtY_Q_yaAAnS6WMKZ2vDV9dHg0TIzET-DkrN5AQJVAPtWepRn3aFc7OS5Bn5nAxVT40ZEEzSTMD4XQgg=s180',
+        calories: 423,
+        protein: 23,
+        sodium: 555, 
+        carbs:323
       },
 
       recipe4 = {
         name: 'Keto Spaghetti Squash Au Gratin',
-        image: 'http://lh3.googleusercontent.com/-eO6Fi2BrQHCIMQm0IQpvG5Z7ssaIogDodLWhdubtM7-QfGyCu4IleK0mfxjaHuvvsqfgnyS1mjt63iChzkcxw=s180'
+        image: 'http://lh3.googleusercontent.com/-eO6Fi2BrQHCIMQm0IQpvG5Z7ssaIogDodLWhdubtM7-QfGyCu4IleK0mfxjaHuvvsqfgnyS1mjt63iChzkcxw=s180',
+        calories: 423,
+        protein: 23,
+        sodium: 555, 
+        carbs:323
       },
 
       recipe5 = {
         name: 'Peanut Butter and Jelly Puffs',
-        image: 'https://lh3.googleusercontent.com/EtSnU_SpAPeRYIn1uaEPR68vO96LfxhEfOBRI2cz8hE7N7uEImruvetUUSNqJPsBw3-Wpy6Z93ncNY3HhKY7tA=s180'
+        image: 'https://lh3.googleusercontent.com/EtSnU_SpAPeRYIn1uaEPR68vO96LfxhEfOBRI2cz8hE7N7uEImruvetUUSNqJPsBw3-Wpy6Z93ncNY3HhKY7tA=s180',
+        calories: 423,
+        protein: 23,
+        sodium: 555, 
+        carbs:323
       }]
     };
 
@@ -74,16 +82,19 @@ export default class Builder extends Component {
       this.setState({
         mealSummary: [
           ...this.state.mealSummary,
-          this.state.selectedItem,
-          /*this.state.mealsAvailable.map((meal, i) => {
-          <TouchableOpacity style={styles.Image}
-                            onPress={ () => (this.setState({selectedItem: meal}))}>
-              <Image style={styles.Image}
-                     source={{uri: meal.image}}/>
-          </TouchableOpacity>
-          })*/
+          {name: this.state.selectedItem.name,
+           image: this.state.selectedItem.image,
+           calories: Math.round(this.state.selectedItem.calories*this.state.value),
+           protein: Math.round(this.state.selectedItem.protein*this.state.value),
+           sodium: Math.round(this.state.selectedItem.sodium*this.state.value),
+           carbs: Math.round(this.state.selectedItem.carbs*this.state.value),
+           value: this.state.value
+          }
         ],
         selectedItem: {},
+        text:'',
+        value: 1,
+        percent: '100%'
       });
     }
     else {
@@ -107,22 +118,78 @@ export default class Builder extends Component {
   removeFromMealSummary = () => {
     this.state.mealSummary.splice(this.state.mealSummary.indexOf(this.state.selectedItem), 1);
     this.setState({
-      //mealSummary: array,
-      selectedItem: {}
+      selectedItem: {},
+      text: '',
+      value: 1,
+      percent: '100%'
     });
 
   }
 
+  updateMealSummary = () => {
+    this.state.mealSummary.splice(
+      this.state.mealSummary.indexOf(
+        this.state.selectedItem), 1,  {name: this.state.selectedItem.name,
+                                       image: this.state.selectedItem.image,
+                                       calories: Math.round(this.state.selectedItem.calories*this.state.value),
+                                       protein: Math.round(this.state.selectedItem.protein*this.state.value),
+                                       sodium: Math.round(this.state.selectedItem.sodium*this.state.value),
+                                       carbs: Math.round(this.state.selectedItem.carbs*this.state.value),
+                                       value: this.state.value
+     });
+    this.setState({
+      selectedItem: {},
+      text: '',
+      value: 1,
+      percent: '100%'
+    });
+
+  }
+
+  resetValues = (meal) => {
+    this.setState({selectedItem: {name: meal.name,
+                                  image: meal.image,
+                                  calories: Math.round(meal.calories/meal.value),
+                                  protein: Math.round(meal.protein/meal.value),
+                                  sodium: Math.round(meal.sodium/meal.value),
+                                  carbs: Math.round(meal.carbs/meal.value)},
+                   button: 'remove',
+                   text: 'Meal: ' + meal.name + '\n\n' +
+                         'Calories: ' + meal.calories + '\n' +
+                         'Protein: ' + meal.protein + '\n' +
+                         'Sodium: ' + meal.sodium + '\n' +
+                         'Carbs: ' + meal.carbs,
+                   value: meal.value,
+                   percent: Math.round(meal.value*100) + '%'
+    });
+  }
+
   renderButton = () => {
     if (this.state.button == 'remove') {
-      return (<Button title='Remove' onPress={this.removeFromMealSummary} />);
+      return (<View style={styles.URView}>
+                <Button title='Remove' color = 'red' onPress={this.removeFromMealSummary} />
+                <Button title='Update' onPress={this.updateMealSummary}/>
+              </View>);
     }
 
     else {
-      return (<Button title='Add' onPress={this.addToMealSummary} />);
+      return (<View style={styles.add_remove}>
+              <Button title='Add' onPress={this.addToMealSummary} />
+              </View>);
     }
   }
 
+  updateNutrients(value){
+    this.setState({
+      percent: Math.round(value*100) + '%',
+      text: 'Meal: ' + this.state.selectedItem.name + '\n\n' +
+            'Calories: ' + Math.round(this.state.selectedItem.calories*value) + '\n' +
+            'Protein: ' + Math.round(this.state.selectedItem.protein*value) + '\n' +
+            'Sodium: ' + Math.round(this.state.selectedItem.sodium*value) + '\n' +
+            'Carbs: ' + Math.round(this.state.selectedItem.carbs*value)
+    })
+  }
+ 
   render() {
 
     var images = [];
@@ -132,7 +199,14 @@ export default class Builder extends Component {
         <TouchableOpacity
           key={i}
           style={styles.Image}
-          onPress={() => (this.setState({ selectedItem: meal, button: 'add' }))}>
+          onPress={() => (this.setState({ selectedItem: meal, 
+                                          button: 'add',
+                                          text: 'Meal: ' + meal.name + '\n\n' +
+                                          'Calories: ' + meal.calories + '\n' +
+                                          'Protein: ' + meal.protein + '\n' +
+                                          'Sodium: ' + meal.sodium + '\n' +
+                                          'Carbs: ' + meal.carbs,
+                                          value: 1, percent: '100%'}))}>
           <Image style={styles.Image}
             source={{ uri: meal.image }} />
         </TouchableOpacity>
@@ -141,27 +215,58 @@ export default class Builder extends Component {
 
     return (
       <View>
-        <Image source={this.state.clicked == "hotDog" && require('../assets/th.jpg')} style={styles.Crazy} />
-        <View style={styles.FirstContainer}>
-          <View style={styles.add_remove}>
-            {this.renderButton()}
+        <View style={styles.NavigationBar}>
+        <View style={[{width:100,height:2}]}>
+          <Button onPress={this.nav("Home")} title="Home" />
           </View>
+          <View style={[{width:100,height:2}]}>
+          <Button onPress={this.nav("Collection")} title="Collection"  />
+          </View>
+        </View>
+        <Image source={this.state.clicked == "hotDog" && require('../assets/th.jpg')} style={styles.Crazy} />
+        <Image source={this.state.clicked=="quickEats" && require ('../assets/QuickEat.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="Sandy" && require ('../assets/FastFood.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="Italian" && require ('../assets/Italian.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="Mexican" && require ('../assets/Mexican.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="Russian" && require ('../assets/Russian.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="American" && require ('../assets/American.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="Chinese" && require ('../assets/Buffet.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="Hibachi" && require ('../assets/Hibachi.jpg')} style={styles.Crazy}/>
+        <Image source={this.state.clicked=="Thai" && require ('../assets/Thai.jpg')} style={styles.Crazy}/>
+        <View style={styles.FirstContainer}>
+        <View style={styles.add_remove}>
+         {this.renderButton()}
+         </View>
           <View style={styles.reset}>
-            <Button title='Reset' onPress={() => (this.setState({ selectedItem: {}, mealSummary: [] }))} />
+            <Button title='Reset' onPress={() => (this.setState({ selectedItem: {}, mealSummary: [], 
+                                                                  text: '', value: 1, percent: '100%' }))} />
           </View>
           <View style={styles.dropzone}>
             <Image style={styles.Image}
               source={{ uri: this.state.selectedItem.image }} />
           </View>
-          <View style={styles.portionSize}>
-            <RadioGroup radioButtons={this.state.data} />
+          <View style={styles.portionControl}>
+              <Text>{this.state.percent} </Text>
+              <Slider minimumValue={0.5}
+                      maximumValue={1.5}
+                      value={this.state.value}
+                      step={0.1}
+                      onValueChange={(value) => this.updateNutrients(value)}
+                      onSlidingComplete={(value => this.setState({value: value}))}
+                      style={{width: 100}}
+                      />
+          </View>
+          <View style={styles.liveDisplay}>
+            <Text>
+              {this.state.text}
+            </Text>
           </View>
         </View>
         <View style={styles.mealSummary}>
           {this.state.mealSummary.map((meal, i) => {
             return (<TouchableOpacity style={styles.Image}
               key={i}
-              onPress={() => (this.setState({ selectedItem: meal, button: 'remove' }))}>
+              onPress={() => (this.resetValues(meal))}>
               <Image style={styles.Image}
                 source={{ uri: meal.image }} />
             </TouchableOpacity>);
@@ -172,13 +277,6 @@ export default class Builder extends Component {
             {images}
           </View>
         </ScrollView>
-
-        <View style={styles.NavigationBar}>
-          <Button onPress={this.nav("Home")} title="Home" style={{ width: '100%' }} />
-          <Button onPress={this.nav("Collection")} title="Collection" style={{ width: '100%' }} />
-        </View>
-
-
       </View >
 
     );
@@ -221,8 +319,8 @@ const styles = StyleSheet.create({
 
   add_remove: {
     position: 'absolute',
-    height: 10,
-    width: 80,
+    height: 100,
+    width: 100,
     top: 0,
     left: 0
   },
@@ -238,18 +336,36 @@ const styles = StyleSheet.create({
   dropzone: {
     width: 80,
     height: 80,
+    position: 'absolute',
+    left: 40,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    borderStyle: "dashed",
+    borderStyle: 'dashed',
     borderWidth: 3
   },
 
-  portionSize: {
-    width: 80,
+  portionControl: {
+    position: 'absolute',
+    bottom: 0,
+    left: 40,
+    width: 60,
     height: 60,
     marginLeft: 10,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  liveDisplay: {
+    height: 150,
+    width: 200,
+    position: 'absolute',
+    right: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 4,
+    borderStyle: 'dashed',
   },
 
   mealSummary: {
@@ -266,18 +382,30 @@ const styles = StyleSheet.create({
   Image: {
     width: 80,
     height: 80,
-    margin: 5
-  },
-
-  NavigationBar: {
-    width: '100%',
+    margin: 5,
+    justifyContent: 'center',
     alignItems: 'center',
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  },
+  NavigationBar:
+  {
+    width: '100%', 
+    height: 50, 
+    flexDirection:'row',
+    justifyContent:'space-between',
+    alignItems: 'center',
     position: 'absolute',
     bottom: 0
+    
   },
+
+  URView:
+  {
+    width: 100,
+    height: 35,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+
   Crazy:
   {
     height: 512,
