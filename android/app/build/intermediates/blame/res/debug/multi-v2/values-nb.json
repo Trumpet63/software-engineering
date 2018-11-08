@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\feldo\\Menu\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-nb\\values-nb.xml",
+            "outputFile": "C:\\Users\\NOCon\\Desktop\\School\\software\\software-engineering\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-nb\\values-nb.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\feldo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\9dabc0a68e364bca60ac6d21ebca0021\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\NOCon\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\b033c85e4ed19725791dd5b080db1d99\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\feldo\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\1d390a285fd43b7d0f3c775094e13ecf\\res\\values-nb\\values-nb.xml",
+                    "source": "C:\\Users\\NOCon\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\41c0086d73b12147b33350148190919f\\res\\values-nb\\values-nb.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

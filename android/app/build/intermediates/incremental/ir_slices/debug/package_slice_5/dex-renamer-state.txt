@@ -1,4 +1,0 @@
-#Sat Sep 29 15:46:50 EDT 2018
-base.0=C\:\\Users\\feldo\\Menu\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\6
-path.0=classes.dex
-renamed.0=classes.dex

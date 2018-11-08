@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Slider} from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Slider } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import getNewRecipe from '../functions/recipes';
 import { selected } from '../config';
@@ -19,7 +19,8 @@ export default class Builder extends Component {
       button: '',
       selectedItem: {},
       mealSummary: [],
-      mealsAvailable: [recipe1 = {
+      mealsAvailable: [
+        recipe1 = {
         name: 'Herbed Haricots Verts',
         image: 'http://lh3.ggpht.com/L6mfpqHtlXaY_Kx1jtDc-jGTZEAQeIuKhNhY1JgAxbWlXgFbZ2DxycB4noKXbMuQXCciWw-dbL9PlRf9aWLkvg=s180',
         calories: 423,
@@ -62,7 +63,8 @@ export default class Builder extends Component {
         protein: 23,
         sodium: 555, 
         carbs:323
-      }]
+      }
+      ]
     };
 
     /*for (var i = 0; i < 5; i++) {
@@ -75,6 +77,26 @@ export default class Builder extends Component {
         });
       });
     }*/
+  }
+
+  async componentDidMount() {
+    try {
+      const data = await AsyncStorage.getItem(selected.clicked)
+      console.log(JSON.parse(data));
+      this.setState({
+        clicked: JSON.parse(data),
+      })
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  addToSelectedItem = (meal, action) => {
+    this.setState({
+      selectedItem: meal,
+      button: action,
+    });
   }
 
   addToMealSummary = () => {
@@ -91,6 +113,7 @@ export default class Builder extends Component {
            value: this.state.value
           }
         ],
+        mealsAvailable: this.state.mealsAvailable.filter((item) => { return item.name != this.state.selectedItem.name }),
         selectedItem: {},
         text:'',
         value: 1,
@@ -101,22 +124,8 @@ export default class Builder extends Component {
       alert("Your meal summary is already full...");
     }
   }
-  async componentDidMount() {
-    try {
-      const data = await AsyncStorage.getItem(selected.clicked)
-      console.log(JSON.parse(data));
-      this.setState({
-        clicked: JSON.parse(data),
-      })
-    }
-    catch (error) {
-      console.log(error);
-    }
 
-
-  }
   removeFromMealSummary = () => {
-    this.state.mealSummary.splice(this.state.mealSummary.indexOf(this.state.selectedItem), 1);
     this.setState({
       selectedItem: {},
       text: '',
@@ -143,7 +152,17 @@ export default class Builder extends Component {
       value: 1,
       percent: '100%'
     });
+  }
 
+  resetMealSummary = () => {
+    this.setState({
+      mealsAvailable: [
+        ...this.state.mealSummary,
+        ...this.state.mealsAvailable,
+      ],
+      mealSummary: [],
+      selectedItem: {},
+    });
   }
 
   resetValues = (meal) => {
@@ -191,7 +210,6 @@ export default class Builder extends Component {
   }
  
   render() {
-
     var images = [];
 
     this.state.mealsAvailable.map((meal, i) => {
@@ -274,7 +292,19 @@ export default class Builder extends Component {
         </View>
         <ScrollView style={styles.SecondContainerScrollView}>
           <View style={styles.SecondContainer}>
-            {images}
+            {
+              this.state.mealsAvailable.map((meal, i) => {
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={styles.Image}
+                    onPress={() => {this.addToSelectedItem(meal, 'add');}} >
+                    <Image style={styles.Image}
+                      source={{ uri: meal.image }} />
+                  </TouchableOpacity>
+                );
+              })
+            }
           </View>
         </ScrollView>
       </View >
@@ -285,7 +315,8 @@ export default class Builder extends Component {
 
 let Window = Dimensions.get('window');
 const styles = StyleSheet.create({
-
+  BuilderContainer: {
+  },
 
   FirstContainer: {
     flexDirection: 'row',
