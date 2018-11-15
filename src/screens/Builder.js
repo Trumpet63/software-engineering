@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
 
   reset: {
     position: 'absolute',
-    height: 10,
+    height: 50,
     width: 80,
     top: 0,
     right: 0
