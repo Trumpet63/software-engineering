@@ -6,7 +6,8 @@ export default class Collection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      meals: [],
+      mealsAvailable: [],
+      mealSummary: [],
     }
   }
 
@@ -14,7 +15,14 @@ export default class Collection extends Component {
     getAllMeals('MEALS_AVAILABLE', (meals) => {
       if (meals != null) {
         this.setState({
-          meals: meals,
+          mealsAvailable: meals,
+        });
+      }
+    });
+    getAllMeals('MEALS_SUMMARY', (meals) => {
+      if (meals != null) {
+        this.setState({
+          mealSummary: meals,
         });
       }
     });

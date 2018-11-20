@@ -41,6 +41,7 @@ export default class Builder extends Component {
         }
       ],
     };
+  }
 
     /*getAllMeals('MEALS_AVAILABLE', (result) => {
       this.setState({
@@ -94,6 +95,7 @@ export default class Builder extends Component {
         ],
         mealsAvailable: this.state.mealsAvailable.filter((item) => { return item.name != this.state.selectedItem.name }),
         selectedItem: {},
+        text: '',
         value: 1,
       });
     }
@@ -191,7 +193,7 @@ export default class Builder extends Component {
     }
   }
 
-  updateNutrients(value){
+  updateNutrients(value) {
     this.setState({
       text: 'Meal: ' + this.state.selectedItem.name + '\n\n' +
             'Calories: ' + Math.round(this.state.selectedItem.calories * value) + '\n' +
@@ -335,7 +337,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderStyle: 'dashed',
-    borderWidth: 3
+    borderWidth: 3,
+    borderRadius: 1,
+    borderColor: 'black',
+
   },
 
   portionControl: {
@@ -359,6 +364,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 4,
     borderStyle: 'dashed',
+    borderRadius: 1,
+    borderColor: 'black',
   },
 
   mealSummary: {
@@ -386,7 +393,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: Window.height,
     backgroundColor: 'white'
-
   },
 
   URView:
