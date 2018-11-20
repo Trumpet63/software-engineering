@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Slider } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Alert, Slider, } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import getNewRecipe from '../functions/recipes';
 import { selected } from '../config';
 import { getAllMeals, getNewMeal, addMeal, removeMeal } from '../functions/meals';
-
+import SummaryEditor from '../components/SummaryEditor'
 
 export default class Builder extends Component {
   nav = (navroute) => () => {
@@ -13,55 +13,83 @@ export default class Builder extends Component {
 
   constructor(props) {
     super(props);
-
+    //const clicked = this.props.navigation.getParam("clicked");
     this.state = {
-      percent: '100%',
-      value: 1,
       text: '',
+      value: 1,
       button: '',
       selectedItem: {},
       mealSummary: [],
-      mealsAvailable: [],
+      mealsAvailable: [
+        recipe1 = {
+          name: 'Make Your Own Italian Bread',
+          image: "https://lh3.googleusercontent.com/n5Vt0L4MhPBq_G_oj0v6iCYWz-iHsZaxpv-pATDU2syb7sZkZfULF6HS_F6xP0ZHyJhVx3Ecf5NN3qpB6PmM=s180",
+          calories: 234,
+          protein: 23,
+          sodium: 12,
+          carbs: 34
+        },
+
+        recipe2 = {
+          name: "Herbed Haricots Verts",
+          image: "http://lh3.ggpht.com/Y24XxpLghbSeCxPvEtp8Z2YMtnEppWU_kTLRNbET1s7U0_cgRC39JLt5iq3rHMyVLjN7DdfCeuARCqEdBlsmRTo=s180",
+          calories: 234,
+          protein: 23,
+          sodium: 12,
+          carbs: 34
+
+        }
+      ],
     };
   }
 
-  componentDidMount() {
-    getAllMeals('MEALS_AVAILABLE', (meals) => {
-      if (meals != null) {
-        this.setState({
-          mealsAvailable: meals,
-        });
-      }
-    });
-    getAllMeals('MEALS_SUMMARY', (meals) => {
-      if (meals != null) {
-        this.setState({
-          mealSummary: meals,
-        });
-      }
-    });
+    /*getAllMeals('MEALS_AVAILABLE', (result) => {
+      this.setState({
+        mealsAvailable: [
+          ...this.state.mealsAvailable,
+          result,
+        ],
+      });
+    });*/
   }
 
+  // async componentDidMount() {
+  //try {
+  // const data = await AsyncStorage.getItem(selected.clicked)
+  //console.log(JSON.parse(data));
+  //this.setState({
+  // clicked: JSON.parse(data),
+  //})
+  //}
+  //catch (error) {
+  // console.log(error);
+  //}
+  //}
 
-  addToSelectedItem = (meal, action) => {
+  availableToSelectedItem = (meal, action) => {
     this.setState({
       selectedItem: meal,
       button: action,
+      value: 1,
+    });
+  }
+
+  summaryToSelectedItem = (meal, action) => {
+    this.setState({
+      selectedItem: meal.meal,
+      button: action,
+      value: meal.value,
     });
   }
 
   addToMealSummary = () => {
+    if(this.state.selectedItem.name != null){
     if (this.state.mealSummary.length < 3) {
       this.setState({
         mealSummary: [
           ...this.state.mealSummary,
           {
-            name: this.state.selectedItem.name,
-            image: this.state.selectedItem.image,
-            calories: Math.round(this.state.selectedItem.calories * this.state.value),
-            protein: Math.round(this.state.selectedItem.protein * this.state.value),
-            sodium: Math.round(this.state.selectedItem.sodium * this.state.value),
-            carbs: Math.round(this.state.selectedItem.carbs * this.state.value),
+            meal: this.state.selectedItem,
             value: this.state.value
           }
         ],
@@ -69,74 +97,85 @@ export default class Builder extends Component {
         selectedItem: {},
         text: '',
         value: 1,
-        percent: '100%'
       });
     }
     else {
       alert("Your meal summary is already full...");
     }
   }
+}
 
   removeFromMealSummary = () => {
+    if(this.state.selectedItem.name != null){
     this.setState({
       selectedItem: {},
-      text: '',
       value: 1,
-      percent: '100%'
+      mealsAvailable: [
+        this.state.selectedItem,
+        ...this.state.mealsAvailable,
+      ],
+      mealSummary: this.state.mealSummary.filter((item) => { return item.meal.name != this.state.selectedItem.name }),
     });
-
+   }
   }
 
   updateMealSummary = () => {
     this.state.mealSummary.splice(
       this.state.mealSummary.indexOf(
         this.state.selectedItem), 1, {
-        name: this.state.selectedItem.name,
-        image: this.state.selectedItem.image,
-        calories: Math.round(this.state.selectedItem.calories * this.state.value),
-        protein: Math.round(this.state.selectedItem.protein * this.state.value),
-        sodium: Math.round(this.state.selectedItem.sodium * this.state.value),
-        carbs: Math.round(this.state.selectedItem.carbs * this.state.value),
+        meal: this.state.selectedItem,
         value: this.state.value
       });
     this.setState({
       selectedItem: {},
-      text: '',
       value: 1,
-      percent: '100%'
     });
   }
 
   resetMealSummary = () => {
+    var temp = this.state.mealSummary.map((obj) => {
+      return (obj.meal);
+    });
     this.setState({
       mealsAvailable: [
-        ...this.state.mealSummary,
+        ...temp,
         ...this.state.mealsAvailable,
       ],
       mealSummary: [],
       selectedItem: {},
     });
   }
-
-  resetValues = (meal) => {
-    this.setState({
-      selectedItem: {
-        name: meal.name,
-        image: meal.image,
-        calories: Math.round(meal.calories / meal.value),
-        protein: Math.round(meal.protein / meal.value),
-        sodium: Math.round(meal.sodium / meal.value),
-        carbs: Math.round(meal.carbs / meal.value)
-      },
-      button: 'remove',
-      text: 'Meal: ' + meal.name + '\n\n' +
-        'Calories: ' + meal.calories + '\n' +
-        'Protein: ' + meal.protein + '\n' +
-        'Sodium: ' + meal.sodium + '\n' +
-        'Carbs: ' + meal.carbs,
-      value: meal.value,
-      percent: Math.round(meal.value * 100) + '%'
-    });
+  
+  renderDisplay = () => {
+    if(this.state.selectedItem.name != null){
+      return(
+        <View style={styles.FirstContainer}>
+          <View style={styles.add_remove}>
+            {this.renderButton()}
+          </View>
+          <View style={styles.dropzone}>
+            <Image style={styles.Image}
+              source={{ uri: this.state.selectedItem.image }} />
+          </View>
+          <View style={styles.portionControl}>
+            <Text>{Math.round(this.state.value * 100) + '%'} </Text>
+            <Slider minimumValue={0.5}
+              maximumValue={1.5}
+              value={this.state.value}
+              step={0.1}
+              onValueChange={(value) => this.updateNutrients(value)}
+              onSlidingComplete={(value => this.setState({ value: value }))}
+              style={{ width: 100 }}
+            />
+          </View>
+          <View style={styles.liveDisplay}>
+          <Text>
+            {this.state.text}
+          </Text>
+          </View>
+        </View>
+      )
+    }
   }
 
   renderButton = () => {
@@ -156,19 +195,17 @@ export default class Builder extends Component {
 
   updateNutrients(value) {
     this.setState({
-      percent: Math.round(value * 100) + '%',
       text: 'Meal: ' + this.state.selectedItem.name + '\n\n' +
-        'Calories: ' + Math.round(this.state.selectedItem.calories * value) + '\n' +
-        'Protein: ' + Math.round(this.state.selectedItem.protein * value) + '\n' +
-        'Sodium: ' + Math.round(this.state.selectedItem.sodium * value) + '\n' +
-        'Carbs: ' + Math.round(this.state.selectedItem.carbs * value)
-    })
+            'Calories: ' + Math.round(this.state.selectedItem.calories * value) + '\n' +
+            'Protein: ' + Math.round(this.state.selectedItem.protein * value) + '\n' +
+            'Sodium: ' + Math.round(this.state.selectedItem.sodium * value) + '\n' +
+            'Carbs: ' + Math.round(this.state.selectedItem.carbs * value)
+    });
+    
   }
 
   render() {
-    var images = [];
-
-    this.state.mealsAvailable.map((meal, i) => {
+    /*this.state.mealsAvailable.map((meal, i) => {
       images.push(
         <TouchableOpacity
           key={i}
@@ -187,66 +224,27 @@ export default class Builder extends Component {
             source={{ uri: meal.image }} />
         </TouchableOpacity>
       );
-    });
+    });*/
+
+    const clicked = this.props.navigation.getParam('clicked', '');
+    console.log(clicked);
 
     return (
-      <View>
-        <View style={styles.NavigationBar}>
-          <View style={[{ width: 100, height: 2 }]}>
-            <Button onPress={this.nav("Resturants")} title="Resturants" />
-          </View>
-          <View style={[{ width: 100, height: 2 }]}>
-            <Button onPress={this.nav("Collection")} title="Collection" />
-          </View>
-        </View>
-        <Image source={this.state.clicked == "hotDog" && require('../assets/th.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "quickEats" && require('../assets/QuickEat.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "Sandy" && require('../assets/FastFood.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "Italian" && require('../assets/Italian.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "Mexican" && require('../assets/Mexican.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "Russian" && require('../assets/Russian.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "American" && require('../assets/American.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "Chinese" && require('../assets/Buffet.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "Hibachi" && require('../assets/Hibachi.jpg')} style={styles.Crazy} />
-        <Image source={this.state.clicked == "Thai" && require('../assets/Thai.jpg')} style={styles.Crazy} />
-        <View style={styles.FirstContainer}>
-          <View style={styles.add_remove}>
-            {this.renderButton()}
-          </View>
-          <View style={styles.reset}>
-            <Button title='Reset' onPress={() => (this.setState({
-              selectedItem: {}, mealSummary: [],
-              text: '', value: 1, percent: '100%'
-            }))} />
-          </View>
-          <View style={styles.dropzone}>
-            <Image style={styles.Image}
-              source={{ uri: this.state.selectedItem.image }} />
-          </View>
-          <View style={styles.portionControl}>
-            <Text>{this.state.percent} </Text>
-            <Slider minimumValue={0.5}
-              maximumValue={1.5}
-              value={this.state.value}
-              step={0.1}
-              onValueChange={(value) => this.updateNutrients(value)}
-              onSlidingComplete={(value => this.setState({ value: value }))}
-              style={{ width: 100 }}
-            />
-          </View>
-          <View style={styles.liveDisplay}>
-            <Text>
-              {this.state.text}
-            </Text>
-          </View>
-        </View>
+      <View style={{flex: 1}}>
+      {this.state.selectedItem.name && <SummaryEditor meal={this.state.selectedItem} text={this.state.text} renderButton={this.renderButton} updateNutrients={this.updateNutrients}/>}
         <View style={styles.mealSummary}>
-          {this.state.mealSummary.map((meal, i) => {
+        <View style={styles.reset}>
+            <Button color='red' title='X' onPress= { () => Alert.alert('Alert', 'Are you sure you want to reset meals?', 
+                                                          [{text: 'No' },
+                                                           {text: 'Yes' , onPress: () => {this.resetMealSummary()}}
+                                                          ])} />
+          </View>
+          {this.state.mealSummary.map((summary, i) => {
             return (<TouchableOpacity style={styles.Image}
               key={i}
-              onPress={() => (this.resetValues(meal))}>
+              onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
               <Image style={styles.Image}
-                source={{ uri: meal.image }} />
+                source={{ uri: summary.meal.image }} />
             </TouchableOpacity>);
           })}
         </View>
@@ -258,7 +256,7 @@ export default class Builder extends Component {
                   <TouchableOpacity
                     key={i}
                     style={styles.Image}
-                    onPress={() => { this.addToSelectedItem(meal, 'add'); }} >
+                    onPress={() => { this.availableToSelectedItem(meal, 'add')}} >
                     <Image style={styles.Image}
                       source={{ uri: meal.image }} />
                   </TouchableOpacity>
@@ -267,8 +265,11 @@ export default class Builder extends Component {
             }
           </View>
         </ScrollView>
-      </View >
-
+        <View style = {styles.NavigationBar}>
+         <Button style={{position: 'absolute', bottom: 0,}} onPress={this.nav("Home")} title="Home" />
+         <Button style={{position: 'absolute', bottom: 0,}} onPress={this.nav("Collection")} title="Collection" />
+      </View>
+    </View>
     );
   }
 }
@@ -318,10 +319,13 @@ const styles = StyleSheet.create({
 
   reset: {
     position: 'absolute',
-    height: 50,
-    width: 80,
+    height: 40,
+    width: 30,
     top: 0,
-    right: 0
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
   },
 
   dropzone: {
@@ -366,10 +370,7 @@ const styles = StyleSheet.create({
 
   mealSummary: {
     height: 100,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 0,
-    marginBottom: 10,
+    margin: 10,
     flexDirection: 'row',
     backgroundColor: 'blue',
     borderWidth: 3
@@ -385,13 +386,13 @@ const styles = StyleSheet.create({
   NavigationBar:
   {
     width: '100%',
-    height: 50,
+    height: 35,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     position: 'absolute',
-    bottom: 0
-
+    bottom: Window.height,
+    backgroundColor: 'white'
   },
 
   URView:
