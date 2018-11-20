@@ -193,7 +193,7 @@ export default class Builder extends Component {
       <View>
         <View style={styles.NavigationBar}>
           <View style={[{ width: 100, height: 2 }]}>
-            <Button onPress={this.nav("Home")} title="Home" />
+            <Button onPress={this.nav("Resturants")} title="Resturants" />
           </View>
           <View style={[{ width: 100, height: 2 }]}>
             <Button onPress={this.nav("Collection")} title="Collection" />
