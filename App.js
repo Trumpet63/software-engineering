@@ -1,9 +1,12 @@
+// Modules
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { createStackNavigator } from "react-navigation";
+
+// Screens
 import Home from './src/screens/Home';
+import Restaurants from "./src/screens/Restaurants";
 import Collection from "./src/screens/Collection";
 import Builder from "./src/screens/Builder";
-import {createStackNavigator} from "react-navigation";
 
 export default class App extends Component {
   render() {
@@ -12,9 +15,10 @@ export default class App extends Component {
 }
 const Navigator = createStackNavigator(
   {
-    Home:Home,
-    Collection:Collection,
-    Builder:Builder,
+    Home: Home,
+    Restaurants: Restaurants,
+    Collection: Collection,
+    Builder: Builder,
   },
   {
     initialRouteName: "Home"
