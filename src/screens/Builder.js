@@ -1,10 +1,12 @@
+// Modules
 import React, { Component } from 'react';
 import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Alert, Slider, } from 'react-native';
-import RadioGroup from 'react-native-radio-buttons-group';
-import getNewRecipe from '../functions/recipes';
-import { selected } from '../config';
-import { getAllMeals, getNewMeal, addMeal, removeMeal } from '../functions/meals';
+
+// Components
 import SummaryEditor from '../components/SummaryEditor'
+
+// Functions
+import { getAllMeals, getNewMeal, addMeal, removeMeal } from '../functions/meals';
 
 export default class Builder extends Component {
   nav = (navroute) => () => {
@@ -43,15 +45,16 @@ export default class Builder extends Component {
     };
   }
 
-    /*getAllMeals('MEALS_AVAILABLE', (result) => {
-      this.setState({
-        mealsAvailable: [
-          ...this.state.mealsAvailable,
-          result,
-        ],
-      });
-    });*/
-  }
+  /*getAllMeals('MEALS_AVAILABLE', (result) => {
+    this.setState({
+      mealsAvailable: [
+        ...this.state.mealsAvailable,
+        result,
+      ],
+    });
+  });
+}
+*/
 
   // async componentDidMount() {
   //try {
@@ -83,40 +86,40 @@ export default class Builder extends Component {
   }
 
   addToMealSummary = () => {
-    if(this.state.selectedItem.name != null){
-    if (this.state.mealSummary.length < 3) {
-      this.setState({
-        mealSummary: [
-          ...this.state.mealSummary,
-          {
-            meal: this.state.selectedItem,
-            value: this.state.value
-          }
-        ],
-        mealsAvailable: this.state.mealsAvailable.filter((item) => { return item.name != this.state.selectedItem.name }),
-        selectedItem: {},
-        text: '',
-        value: 1,
-      });
-    }
-    else {
-      alert("Your meal summary is already full...");
+    if (this.state.selectedItem.name != null) {
+      if (this.state.mealSummary.length < 3) {
+        this.setState({
+          mealSummary: [
+            ...this.state.mealSummary,
+            {
+              meal: this.state.selectedItem,
+              value: this.state.value
+            }
+          ],
+          mealsAvailable: this.state.mealsAvailable.filter((item) => { return item.name != this.state.selectedItem.name }),
+          selectedItem: {},
+          text: '',
+          value: 1,
+        });
+      }
+      else {
+        alert("Your meal summary is already full...");
+      }
     }
   }
-}
 
   removeFromMealSummary = () => {
-    if(this.state.selectedItem.name != null){
-    this.setState({
-      selectedItem: {},
-      value: 1,
-      mealsAvailable: [
-        this.state.selectedItem,
-        ...this.state.mealsAvailable,
-      ],
-      mealSummary: this.state.mealSummary.filter((item) => { return item.meal.name != this.state.selectedItem.name }),
-    });
-   }
+    if (this.state.selectedItem.name != null) {
+      this.setState({
+        selectedItem: {},
+        value: 1,
+        mealsAvailable: [
+          this.state.selectedItem,
+          ...this.state.mealsAvailable,
+        ],
+        mealSummary: this.state.mealSummary.filter((item) => { return item.meal.name != this.state.selectedItem.name }),
+      });
+    }
   }
 
   updateMealSummary = () => {
@@ -145,10 +148,10 @@ export default class Builder extends Component {
       selectedItem: {},
     });
   }
-  
+
   renderDisplay = () => {
-    if(this.state.selectedItem.name != null){
-      return(
+    if (this.state.selectedItem.name != null) {
+      return (
         <View style={styles.FirstContainer}>
           <View style={styles.add_remove}>
             {this.renderButton()}
@@ -169,9 +172,9 @@ export default class Builder extends Component {
             />
           </View>
           <View style={styles.liveDisplay}>
-          <Text>
-            {this.state.text}
-          </Text>
+            <Text>
+              {this.state.text}
+            </Text>
           </View>
         </View>
       )
@@ -196,12 +199,12 @@ export default class Builder extends Component {
   updateNutrients(value) {
     this.setState({
       text: 'Meal: ' + this.state.selectedItem.name + '\n\n' +
-            'Calories: ' + Math.round(this.state.selectedItem.calories * value) + '\n' +
-            'Protein: ' + Math.round(this.state.selectedItem.protein * value) + '\n' +
-            'Sodium: ' + Math.round(this.state.selectedItem.sodium * value) + '\n' +
-            'Carbs: ' + Math.round(this.state.selectedItem.carbs * value)
+        'Calories: ' + Math.round(this.state.selectedItem.calories * value) + '\n' +
+        'Protein: ' + Math.round(this.state.selectedItem.protein * value) + '\n' +
+        'Sodium: ' + Math.round(this.state.selectedItem.sodium * value) + '\n' +
+        'Carbs: ' + Math.round(this.state.selectedItem.carbs * value)
     });
-    
+
   }
 
   render() {
@@ -230,14 +233,14 @@ export default class Builder extends Component {
     console.log(clicked);
 
     return (
-      <View style={{flex: 1}}>
-      {this.state.selectedItem.name && <SummaryEditor meal={this.state.selectedItem} text={this.state.text} renderButton={this.renderButton} updateNutrients={this.updateNutrients}/>}
+      <View style={{ flex: 1 }}>
+        {this.state.selectedItem.name && <SummaryEditor meal={this.state.selectedItem} text={this.state.text} renderButton={this.renderButton} updateNutrients={this.updateNutrients} />}
         <View style={styles.mealSummary}>
-        <View style={styles.reset}>
-            <Button color='red' title='X' onPress= { () => Alert.alert('Alert', 'Are you sure you want to reset meals?', 
-                                                          [{text: 'No' },
-                                                           {text: 'Yes' , onPress: () => {this.resetMealSummary()}}
-                                                          ])} />
+          <View style={styles.reset}>
+            <Button color='red' title='X' onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?',
+              [{ text: 'No' },
+              { text: 'Yes', onPress: () => { this.resetMealSummary() } }
+              ])} />
           </View>
           {this.state.mealSummary.map((summary, i) => {
             return (<TouchableOpacity style={styles.Image}
@@ -256,7 +259,7 @@ export default class Builder extends Component {
                   <TouchableOpacity
                     key={i}
                     style={styles.Image}
-                    onPress={() => { this.availableToSelectedItem(meal, 'add')}} >
+                    onPress={() => { this.availableToSelectedItem(meal, 'add') }} >
                     <Image style={styles.Image}
                       source={{ uri: meal.image }} />
                   </TouchableOpacity>
@@ -265,11 +268,11 @@ export default class Builder extends Component {
             }
           </View>
         </ScrollView>
-        <View style = {styles.NavigationBar}>
-         <Button style={{position: 'absolute', bottom: 0,}} onPress={this.nav("Home")} title="Home" />
-         <Button style={{position: 'absolute', bottom: 0,}} onPress={this.nav("Collection")} title="Collection" />
+        <View style={styles.NavigationBar}>
+          <Button style={{ position: 'absolute', bottom: 0, }} onPress={this.nav("Home")} title="Home" />
+          <Button style={{ position: 'absolute', bottom: 0, }} onPress={this.nav("Collection")} title="Collection" />
+        </View>
       </View>
-    </View>
     );
   }
 }

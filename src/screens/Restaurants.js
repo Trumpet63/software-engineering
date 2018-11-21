@@ -1,12 +1,6 @@
 // Modules
 import React, { Component } from 'react';
-import {
-  View,
-  Button,
-  StyleSheet,
-  Dimensions,
-  Image
-} from 'react-native';
+import { ScrollView, View, AsyncStorage, Text, Button, Alert, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -14,28 +8,56 @@ import {
   removeOrientationListener as rol
 } from 'react-native-responsive-screen';
 
-export default class Home extends Component {
+// Components
+import SelectableMenuTile from '../components/SelectableMenuTile';
+
+// Functions
+import initRestaurantData from '../data/RestaurantData';
+
+const foodItem = ["Build A Meal", "For this Restaurant", "And Increase Your Income"]
+
+export default class Resturants extends Component {
   constructor(props) {
     super(props)
     this.state = {
       income: 0.00,
       money: 0.00,
     }
-    console.log('props', props);
-
-    this.nav = this.nav.bind(this);
   }
 
   componentWillUnMount() {
     rol();
   }
 
-  async componentDidMount() {
+  async componentWillMount() {
+    try {
+      var restaurants = await AsyncStorage.getItem('RESTAURANTS')
+      if (!restaurants) {
+        restaurants = initRestaurantData;
+      }
+      else {
+        restaurants = JSON.parse(restaurants);
+        console.log(restaurants);
+      }
+      this.setState({
+        restaurants: restaurants,
+      });
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  componentDidMount() {
     loc(this);
   }
 
   nav = (navroute) => () => {
     this.props.navigation.navigate(navroute);
+  }
+
+  alert = (message) => () => {
+    alert(`Continue playing to unlock this restaurant you must have an income of $${message.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
   }
 
   render() {
@@ -90,7 +112,6 @@ export default class Home extends Component {
       Image: {
         width: Dimensions.get('window').width,
         position: 'absolute',
-
       }
     });
 
@@ -111,9 +132,27 @@ export default class Home extends Component {
         </View>
         <View style={styles.navButt}>
           <View style={styles.leftNav}>
-            <Button onPress={this.nav("Resturants")} title="Resturants" />
+            <Button onPress={this.nav("Collection")} title="Meal Collection" />
+          </View>
+          <View style={styles.rightNav}>
+            <Button onPress={this.nav("Builder")} title="Meal Builder" />
           </View>
         </View>
+        <ScrollView scrollEnabled={true} showVerticalScrollIndicator={true} keyboardDismissMode='on-drag' keyboardShouldPersistTaps={'true'}>
+          {this.state.restaurants &&
+            this.state.restaurants.map((restaurant, key) => {
+              return (
+                <SelectableMenuTile
+                  key={key}
+                  title={restaurant.Title}
+                  rincome={"Restaurant Income: $" + Number(restaurant.Income).toFixed(2)}
+                  image={"../assets/" + restaurant.Image}
+                  restaurant={restaurant.Summary.length <= 0 && restaurant || foodItem}
+                />
+              );
+            })
+          }
+        </ScrollView>
       </View>
     )
   }

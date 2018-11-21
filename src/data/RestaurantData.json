@@ -1,0 +1,72 @@
+[
+  {
+      "Title": "Hot Dog Stand",
+      "Income": 0,
+      "MinIncome": 0,
+      "Image": "th.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Quick Eats",
+      "Income": 0,
+      "MinIncome": 5000,
+      "Image": "QuickEat.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Sandy's Fast Food",
+      "Income": 0,
+      "MinIncome": 220000,
+      "Image": "FastFood.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Pappi's Italian",
+      "Income": 0,
+      "MinIncome": 1179000,
+      "Image": "Italian.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Mexican Corner",
+      "Income": 0,
+      "MinIncome": 2881000,
+      "Image": "Mexican.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Russian Bistro",
+      "Income": 0,
+      "MinIncome": 5327000,
+      "Image": "Russian.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "American Kingdom",
+      "Income": 0,
+      "MinIncome": 8517000,
+      "Image": "American.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Chinese Buffet",
+      "Income": 0,
+      "MinIncome": 12450000,
+      "Image": "Buffet.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Hibachi",
+      "Income": 0,
+      "MinIncome": 17126000,
+      "Image": "Hibachi.jpg",
+      "Summary": []
+  },
+  {
+      "Title": "Thyme Thai",
+      "Income": 0,
+      "MinIncome": 22546000,
+      "Image": "Thai.jpg",
+      "Summary": []
+  }
+]
