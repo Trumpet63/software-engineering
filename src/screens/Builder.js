@@ -1,5 +1,6 @@
 // Modules
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Alert, Slider, } from 'react-native';
 
 // Components
@@ -8,7 +9,7 @@ import SummaryEditor from '../components/SummaryEditor'
 // Functions
 import { getAllMeals, getNewMeal, addMeal, removeMeal } from '../functions/meals';
 
-export default class Builder extends Component {
+class Builder extends Component {
   nav = (navroute) => () => {
     this.props.navigation.navigate(navroute);
   }
@@ -21,82 +22,35 @@ export default class Builder extends Component {
       value: 1,
       button: '',
       selectedItem: {},
-      mealSummary: [],
-      mealsAvailable: [
-        recipe1 = {
-          name: 'Make Your Own Italian Bread',
-          image: "https://lh3.googleusercontent.com/n5Vt0L4MhPBq_G_oj0v6iCYWz-iHsZaxpv-pATDU2syb7sZkZfULF6HS_F6xP0ZHyJhVx3Ecf5NN3qpB6PmM=s180",
-          calories: 234,
-          protein: 23,
-          sodium: 12,
-          carbs: 34
-        },
-
-        recipe2 = {
-          name: "Herbed Haricots Verts",
-          image: "http://lh3.ggpht.com/Y24XxpLghbSeCxPvEtp8Z2YMtnEppWU_kTLRNbET1s7U0_cgRC39JLt5iq3rHMyVLjN7DdfCeuARCqEdBlsmRTo=s180",
-          calories: 234,
-          protein: 23,
-          sodium: 12,
-          carbs: 34
-
-        }
-      ],
+      restaurant: props.navigation.getParam('selectedRestaurant'),
     };
   }
 
-  /*getAllMeals('MEALS_AVAILABLE', (result) => {
-    this.setState({
-      mealsAvailable: [
-        ...this.state.mealsAvailable,
-        result,
-      ],
-    });
-  });
-}
-*/
-
-  // async componentDidMount() {
-  //try {
-  // const data = await AsyncStorage.getItem(selected.clicked)
-  //console.log(JSON.parse(data));
-  //this.setState({
-  // clicked: JSON.parse(data),
-  //})
-  //}
-  //catch (error) {
-  // console.log(error);
-  //}
-  //}
-
   availableToSelectedItem = (meal, action) => {
     this.setState({
-      selectedItem: meal,
+      selectedItem: { meal: meal, value: 1 },
       button: action,
       value: 1,
     });
   }
 
-  summaryToSelectedItem = (meal, action) => {
+  summaryToSelectedItem = (SummaryObject, action) => {
     this.setState({
-      selectedItem: meal.meal,
+      selectedItem: SummaryObject.meal,
       button: action,
-      value: meal.value,
+      value: SummaryObject.value,
     });
   }
 
   addToMealSummary = () => {
     if (this.state.selectedItem.name != null) {
-      if (this.state.mealSummary.length < 3) {
+      if (this.props.restaurant.Summary.length < 3) {
+        this.props.dispatch({
+          type: 'AddToSummary',
+          Restaurant: this.state.restaurant,
+          SummaryObject: this.state.selectedItem,
+        });
         this.setState({
-          mealSummary: [
-            ...this.state.mealSummary,
-            {
-              meal: this.state.selectedItem,
-              value: this.state.value
-            }
-          ],
-          mealsAvailable: this.state.mealsAvailable.filter((item) => { return item.name != this.state.selectedItem.name }),
           selectedItem: {},
           text: '',
           value: 1,
@@ -110,131 +64,46 @@ export default class Builder extends Component {
 
   removeFromMealSummary = () => {
     if (this.state.selectedItem.name != null) {
+      this.props.dispatch({
+        type: 'RemoveFromSummary',
+        Restaurant: this.state.restaurant,
+        SummaryObject: this.state.selectedItem,
+      });
       this.setState({
         selectedItem: {},
         value: 1,
-        mealsAvailable: [
-          this.state.selectedItem,
-          ...this.state.mealsAvailable,
-        ],
-        mealSummary: this.state.mealSummary.filter((item) => { return item.meal.name != this.state.selectedItem.name }),
       });
     }
   }
 
   updateMealSummary = () => {
-    this.state.mealSummary.splice(
-      this.state.mealSummary.indexOf(
-        this.state.selectedItem), 1, {
-        meal: this.state.selectedItem,
-        value: this.state.value
+    if (this.state.selectedItem.name != null) {
+      this.props.dispatch({
+        type: 'UpdateSummaryObject',
+        Restaurant: this.state.restaurant,
+        SummaryObject: this.state.selectedItem,
       });
-    this.setState({
-      selectedItem: {},
-      value: 1,
-    });
+      this.setState({
+        selectedItem: {},
+        value: 1,
+      });
+    }
   }
 
   resetMealSummary = () => {
-    var temp = this.state.mealSummary.map((obj) => {
-      return (obj.meal);
+    this.props.dispatch({
+      type: 'ClearSummary',
+      Restaurant: this.state.restaurant,
     });
     this.setState({
-      mealsAvailable: [
-        ...temp,
-        ...this.state.mealsAvailable,
-      ],
-      mealSummary: [],
       selectedItem: {},
     });
   }
 
-  renderDisplay = () => {
-    if (this.state.selectedItem.name != null) {
-      return (
-        <View style={styles.FirstContainer}>
-          <View style={styles.add_remove}>
-            {this.renderButton()}
-          </View>
-          <View style={styles.dropzone}>
-            <Image style={styles.Image}
-              source={{ uri: this.state.selectedItem.image }} />
-          </View>
-          <View style={styles.portionControl}>
-            <Text>{Math.round(this.state.value * 100) + '%'} </Text>
-            <Slider minimumValue={0.5}
-              maximumValue={1.5}
-              value={this.state.value}
-              step={0.1}
-              onValueChange={(value) => this.updateNutrients(value)}
-              onSlidingComplete={(value => this.setState({ value: value }))}
-              style={{ width: 100 }}
-            />
-          </View>
-          <View style={styles.liveDisplay}>
-            <Text>
-              {this.state.text}
-            </Text>
-          </View>
-        </View>
-      )
-    }
-  }
-
-  renderButton = () => {
-    if (this.state.button == 'remove') {
-      return (<View style={styles.URView}>
-        <Button title='Remove' color='red' onPress={this.removeFromMealSummary} />
-        <Button title='Update' onPress={this.updateMealSummary} />
-      </View>);
-    }
-
-    else {
-      return (<View style={styles.add_remove}>
-        <Button title='Add' onPress={this.addToMealSummary} />
-      </View>);
-    }
-  }
-
-  updateNutrients(value) {
-    this.setState({
-      text: 'Meal: ' + this.state.selectedItem.name + '\n\n' +
-        'Calories: ' + Math.round(this.state.selectedItem.calories * value) + '\n' +
-        'Protein: ' + Math.round(this.state.selectedItem.protein * value) + '\n' +
-        'Sodium: ' + Math.round(this.state.selectedItem.sodium * value) + '\n' +
-        'Carbs: ' + Math.round(this.state.selectedItem.carbs * value)
-    });
-
-  }
-
   render() {
-    /*this.state.mealsAvailable.map((meal, i) => {
-      images.push(
-        <TouchableOpacity
-          key={i}
-          style={styles.Image}
-          onPress={() => (this.setState({
-            selectedItem: meal,
-            button: 'add',
-            text: 'Meal: ' + meal.name + '\n\n' +
-              'Calories: ' + meal.calories + '\n' +
-              'Protein: ' + meal.protein + '\n' +
-              'Sodium: ' + meal.sodium + '\n' +
-              'Carbs: ' + meal.carbs,
-            value: 1, percent: '100%'
-          }))}>
-          <Image style={styles.Image}
-            source={{ uri: meal.image }} />
-        </TouchableOpacity>
-      );
-    });*/
-
-    const clicked = this.props.navigation.getParam('clicked', '');
-    console.log(clicked);
-
     return (
       <View style={{ flex: 1 }}>
-        {this.state.selectedItem.name && <SummaryEditor meal={this.state.selectedItem} text={this.state.text} renderButton={this.renderButton} updateNutrients={this.updateNutrients} />}
+        {this.state.selectedItem.meal && <SummaryEditor summaryObject={this.state.selectedItem} parent={this} state={this.state} />}
         <View style={styles.mealSummary}>
           <View style={styles.reset}>
             <Button color='red' title='X' onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?',
@@ -242,19 +111,21 @@ export default class Builder extends Component {
               { text: 'Yes', onPress: () => { this.resetMealSummary() } }
               ])} />
           </View>
-          {this.state.mealSummary.map((summary, i) => {
-            return (<TouchableOpacity style={styles.Image}
-              key={i}
-              onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
-              <Image style={styles.Image}
-                source={{ uri: summary.meal.image }} />
-            </TouchableOpacity>);
-          })}
+          {this.state.restaurant &&
+            this.state.restaurant.Summary.map((summary, i) => {
+              return (<TouchableOpacity style={styles.Image}
+                key={i}
+                onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
+                <Image style={styles.Image}
+                  source={{ uri: summary.meal.image }} />
+              </TouchableOpacity>);
+            })
+          }
         </View>
         <ScrollView style={styles.SecondContainerScrollView}>
           <View style={styles.SecondContainer}>
             {
-              this.state.mealsAvailable.map((meal, i) => {
+              this.props.mealsAvailable.map((meal, i) => {
                 return (
                   <TouchableOpacity
                     key={i}
@@ -269,8 +140,8 @@ export default class Builder extends Component {
           </View>
         </ScrollView>
         <View style={styles.NavigationBar}>
-          <Button style={{ position: 'absolute', bottom: 0, }} onPress={this.nav("Home")} title="Home" />
-          <Button style={{ position: 'absolute', bottom: 0, }} onPress={this.nav("Collection")} title="Collection" />
+          <Button style={{ position: 'absolute', bottom: 0, }} onPress={() => this.nav("Home")} title="Home" />
+          <Button style={{ position: 'absolute', bottom: 0, }} onPress={() => this.nav("Collection")} title="Collection" />
         </View>
       </View>
     );
@@ -416,3 +287,7 @@ const styles = StyleSheet.create({
   },
 
 });
+
+const mapStateToProps = state => ({ ...state });
+
+export default connect(mapStateToProps)(Builder);

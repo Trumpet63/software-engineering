@@ -1,40 +1,74 @@
-import React from 'react';
-import { View, Image, Slider, Dimensions, StyleSheet, Text } from 'react-native';
+import React, { Component } from 'react';
+import { View, Image, Button, Slider, Dimensions, StyleSheet, Text } from 'react-native';
+import { connect } from 'react-redux';
 
-const SummaryEditor = (props) => {
-    return (
-        <View style={styles.FirstContainer}>
-            <View style={styles.add_remove}>
-                {props.renderButton()}
-            </View>
-            <View style={styles.dropzone}>
-                <Image style={styles.Image}
-                    source={{ uri: props.meal.image }} />
-            </View>
-            <View style={styles.portionControl}>
-                <Text>{Math.round(props.value * 100) + '%'} </Text>
-                <Slider minimumValue={0.5}
-                    maximumValue={1.5}
-                    value={props.value}
-                    step={0.1}
-                    onValueChange={(value) => props.updateNutrients(value)}
-                    onSlidingComplete={(value => props.setState({ value: value }))}
-                    style={{ width: 100 }}
-                />
-            </View>
-            <View style={styles.liveDisplay}>
-                <Text>
-                    {props.text}
-                </Text>
-            </View>
+class SummaryEditor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      value: props.summaryObject.value,
+    });
+
+    this.removeFromMealSummary = props.parent.removeFromMealSummary;
+    this.updateMealSummary = props.parent.updateMealSummary;
+    this.removeFromMealSummary = props.parent.addToMealSummary;
+  }
+
+  renderButton() {
+    if (this.props.state.button == 'remove') {
+      return (
+        <View style={styles.URView}>
+          <Button title='Remove' color='red' onPress={() => this.removeFromMealSummary} />
+          <Button title='Update' onPress={() => this.updateMealSummary} />
         </View>
+      );
+    }
+    else {
+      return (
+        <View style={styles.add_remove}>
+          <Button title='Add' onPress={() => this.addToMealSummary} />
+        </View>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.FirstContainer}>
+        <View style={styles.add_remove}>
+          {this.renderButton()}
+        </View>
+        <View style={styles.dropzone}>
+          <Image style={styles.Image}
+            source={{ uri: this.props.summaryObject.meal.image }} />
+        </View>
+        <View style={styles.portionControl}>
+          <Text>{Math.round(this.props.summaryObject.value * 100) + '%'} </Text>
+          <Slider minimumValue={0.5}
+            maximumValue={1.5}
+            value={this.props.summaryObject.value}
+            step={0.1}
+            onValueChange={(value) => this.setState({ value: value })}
+            onSlidingComplete={(value) => this.props.parent.setState({ selectedItem: {...this.props.parent.state.selectedItem, value: value }})}
+            style={{ width: 100 }}
+          />
+        </View>
+        <View style={styles.liveDisplay}>
+          <Text>Meal: {this.props.summaryObject.meal.name}</Text>
+          <Text>Calories: {Math.round(this.props.summaryObject.meal.calories * this.props.summaryObject.value)}</Text>
+          <Text>Protein: {Math.round(this.props.summaryObject.meal.protein * this.props.summaryObject.value)}</Text>
+          <Text>Sodium: {Math.round(this.props.summaryObject.meal.sodium * this.props.summaryObject.value)}</Text>
+          <Text>Carbs: {Math.round(this.props.summaryObject.meal.carbs * this.props.summaryObject.value)}</Text>
+
+        </View>
+      </View>
     );
+  }
 }
 let Window = Dimensions.get('window');
 const styles = StyleSheet.create({
   BuilderContainer: {
   },
-
   FirstContainer: {
     flexDirection: 'row',
     height: '40%',
@@ -47,7 +81,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightblue',
     borderWidth: 1
   },
-
   SecondContainerScrollView: {
     position: 'relative',
     flexDirection: 'column',
@@ -56,7 +89,6 @@ const styles = StyleSheet.create({
     margin: 10,
     borderWidth: 1,
   },
-
   SecondContainer: {
     flexDirection: 'row',
     margin: 10,
@@ -64,7 +96,6 @@ const styles = StyleSheet.create({
     position: 'relative',
     //overflow: 'hidden',
   },
-
   add_remove: {
     position: 'absolute',
     height: 100,
@@ -72,7 +103,6 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0
   },
-
   reset: {
     position: 'absolute',
     height: 40,
@@ -83,7 +113,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
   },
-
   dropzone: {
     width: 80,
     height: 80,
@@ -95,7 +124,6 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed',
     borderWidth: 3
   },
-
   portionControl: {
     position: 'absolute',
     bottom: 0,
@@ -107,7 +135,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-
   liveDisplay: {
     height: 150,
     width: 200,
@@ -118,7 +145,6 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderStyle: 'dashed',
   },
-
   mealSummary: {
     height: 100,
     margin: 10,
@@ -126,7 +152,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderWidth: 3
   },
-
   Image: {
     width: 80,
     height: 80,
@@ -134,8 +159,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  NavigationBar:
-  {
+  NavigationBar: {
     width: '100%',
     height: 35,
     flexDirection: 'row',
@@ -144,25 +168,22 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: Window.height,
     backgroundColor: 'white'
-
   },
 
-  URView:
-  {
+  URView: {
     width: 100,
     height: 35,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-
-  Crazy:
-  {
+  Crazy: {
     height: 512,
     width: Dimensions.get('window').width,
     position: 'absolute',
     resizeMode: 'cover',
-
   },
-
 });
-export default SummaryEditor;
+
+const mapStateToProps = state => ({ ...state });
+
+export default connect(mapStateToProps)(SummaryEditor);

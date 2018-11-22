@@ -1,11 +1,13 @@
 // Modules
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   View,
   Button,
   StyleSheet,
   Dimensions,
-  Image
+  Image,
+  Text,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -14,18 +16,7 @@ import {
   removeOrientationListener as rol
 } from 'react-native-responsive-screen';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      income: 0.00,
-      money: 0.00,
-    }
-    console.log('props', props);
-
-    this.nav = this.nav.bind(this);
-  }
-
+class Home extends Component {
   componentWillUnMount() {
     rol();
   }
@@ -34,7 +25,7 @@ export default class Home extends Component {
     loc(this);
   }
 
-  nav = (navroute) => () => {
+  nav = (navroute) => {
     this.props.navigation.navigate(navroute);
   }
 
@@ -94,8 +85,6 @@ export default class Home extends Component {
       }
     });
 
-    const { income } = this.state
-
     return (
       <View>
         <View>
@@ -104,17 +93,23 @@ export default class Home extends Component {
         <View style={styles.topContainer}>
           <View style={styles.leftSide}>
             <Image source={require('../assets/income.png')} style={styles.incomeImage} />
+            <Text>{this.props.wallet.TotalIncome}</Text>
           </View>
           <View style={styles.rightSide}>
             <Image source={require('../assets/money.png')} style={styles.moneyImage} />
+            <Text>{this.props.wallet.Money}</Text>
           </View>
         </View>
         <View style={styles.navButt}>
           <View style={styles.leftNav}>
-            <Button onPress={this.nav("Resturants")} title="Resturants" />
+            <Button onPress={() => this.nav("Restaurants")} title="Restaurants" />
           </View>
         </View>
       </View>
     )
   }
 }
+
+const mapStateToProps = state => ({ ...state });
+
+export default connect(mapStateToProps)(Home);
