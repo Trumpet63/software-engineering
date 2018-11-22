@@ -1,6 +1,7 @@
 // Modules
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -8,13 +9,22 @@ import {
     removeOrientationListener as rol
 } from 'react-native-responsive-screen';
 
-export default class SelectableMenuTile extends Component {
+class SelectableMenuTile extends Component {
+    constructor(props) {
+        super(props);
+        this.nav = this.nav.bind(this);
+    }
+
     componentDidMount() {
         loc(this);
     }
 
     componentWillUnMount() {
         rol();
+    }
+
+    nav() {
+        this.props.navigation.navigate('Builder', { selectedRestaurant: this.props.restaurant });
     }
 
     render() {
@@ -82,7 +92,7 @@ export default class SelectableMenuTile extends Component {
         })
         return (
             <TouchableOpacity
-                onPress={this.props.nav}
+                onPress={() => this.nav()}
                 style={styles.touch}>
                 <View style={styles.container}>
                     <View style={styles.resturantBox}>
@@ -103,3 +113,7 @@ export default class SelectableMenuTile extends Component {
         );
     }
 };
+
+const mapStateToProps = state => ({ ...state });
+
+export default connect(mapStateToProps)(SelectableMenuTile);

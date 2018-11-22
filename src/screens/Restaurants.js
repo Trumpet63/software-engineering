@@ -1,6 +1,7 @@
 // Modules
 import React, { Component } from 'react';
 import { ScrollView, View, AsyncStorage, Text, Button, Alert, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
+import { connect } from 'react-redux';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -16,15 +17,7 @@ import initRestaurantData from '../data/RestaurantData';
 
 const foodItem = ["Build A Meal", "For this Restaurant", "And Increase Your Income"]
 
-export default class Resturants extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      income: 0.00,
-      money: 0.00,
-    }
-  }
-
+class Restaurants extends Component {
   componentWillUnMount() {
     rol();
   }
@@ -115,8 +108,6 @@ export default class Resturants extends Component {
       }
     });
 
-    const { income } = this.state
-
     return (
       <View>
         <View>
@@ -132,22 +123,22 @@ export default class Resturants extends Component {
         </View>
         <View style={styles.navButt}>
           <View style={styles.leftNav}>
-            <Button onPress={this.nav("Collection")} title="Meal Collection" />
+            <Button onPress={() => this.nav("Collection")} title="Meal Collection" />
           </View>
           <View style={styles.rightNav}>
-            <Button onPress={this.nav("Builder")} title="Meal Builder" />
+            <Button onPress={() => this.nav("Builder")} title="Meal Builder" />
           </View>
         </View>
         <ScrollView scrollEnabled={true} showVerticalScrollIndicator={true} keyboardDismissMode='on-drag' keyboardShouldPersistTaps={'true'}>
-          {this.state.restaurants &&
-            this.state.restaurants.map((restaurant, key) => {
+          {this.props.restaurants &&
+            this.props.restaurants.map((restaurant, key) => {
               return (
                 <SelectableMenuTile
                   key={key}
                   title={restaurant.Title}
-                  rincome={"Restaurant Income: $" + Number(restaurant.Income).toFixed(2)}
+                  rincome={"Restaurant Income: $" + Number(restaurant.Income || 0).toFixed(2)}
                   image={"../assets/" + restaurant.Image}
-                  restaurant={restaurant.Summary.length <= 0 && restaurant || foodItem}
+                  restaurant={restaurant}
                 />
               );
             })
@@ -157,3 +148,7 @@ export default class Resturants extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({ ...state });
+
+export default connect(mapStateToProps)(Restaurants);
