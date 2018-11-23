@@ -132,12 +132,12 @@ class Restaurants extends Component {
         <ScrollView scrollEnabled={true} showVerticalScrollIndicator={true} keyboardDismissMode='on-drag' keyboardShouldPersistTaps={'true'}>
           {this.props.restaurants &&
             this.props.restaurants.map((restaurant, key) => {
+              console.log('Restaurant Image Source: ', "../assets/" + restaurant.Image);
               return (
                 <SelectableMenuTile
                   key={key}
                   title={restaurant.Title}
                   rincome={"Restaurant Income: $" + Number(restaurant.Income || 0).toFixed(2)}
-                  image={"../assets/" + restaurant.Image}
                   restaurant={restaurant}
                 />
               );

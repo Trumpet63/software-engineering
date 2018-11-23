@@ -9,6 +9,9 @@ import {
     removeOrientationListener as rol
 } from 'react-native-responsive-screen';
 
+// Functions
+import images from '../functions/restaurantImages';
+
 class SelectableMenuTile extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +27,8 @@ class SelectableMenuTile extends Component {
     }
 
     nav() {
-        this.props.navigation.navigate('Builder', { selectedRestaurant: this.props.restaurant });
+        console.log('selected rest', this.props.restaurant);
+        this.props.navigation.navigate('Builder', { selectedRestaurant: {...this.props.restaurant} });
     }
 
     render() {
@@ -97,7 +101,7 @@ class SelectableMenuTile extends Component {
                 <View style={styles.container}>
                     <View style={styles.resturantBox}>
                         <View style={styles.leftSide}>
-                            <Image style={styles.image} source={{ uri: this.props.image }} />
+                            <Image style={styles.image} source={images[this.props.title]} />
                         </View>
                         <View style={styles.rightSide}>
                             <View style={styles.topRight}>
