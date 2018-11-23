@@ -67,7 +67,7 @@ class Boot extends React.Component {
   nav(target) {
     const resetAction = StackActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'Restaurants' })],
+      actions: [NavigationActions.navigate({ routeName: 'Home' })],
     });
     this.props.navigation.dispatch(resetAction);
 
