@@ -1,6 +1,6 @@
 // Modules
 import React, { Component } from 'react';
-import { ScrollView, View, AsyncStorage, Text, Button, Alert, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
+import { ScrollView, View, AsyncStorage, Text, Button, Alert, TouchableOpacity, StyleSheet, Dimensions, Image, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import {
   widthPercentageToDP as wp,
@@ -58,7 +58,7 @@ class Restaurants extends Component {
       //Top of the screen locaiton of Money & Income
       topContainer: {
         width: wp('100%'),
-        height: hp('8%'),
+        height: hp('10%'),
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'rgba(52, 52, 52, 0.1)'
@@ -69,6 +69,10 @@ class Restaurants extends Component {
         justifyContent: 'center',
       },
       moneyImage: {
+        width: 175,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
       },
       rightSide: {
         flex: 2,
@@ -76,6 +80,10 @@ class Restaurants extends Component {
         justifyContent: 'center',
       },
       incomeImage: {
+        width: 175,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center', 
       },
       Text: {
         fontWeight: 'bold',
@@ -95,17 +103,27 @@ class Restaurants extends Component {
         position: 'absolute',
         bottom: 37,
       },
-      leftNav: {
-        flex: 2,
-        paddingLeft: 2,
-        justifyContent: 'center',
-      },
-      rightNav: {
-      },
       Image: {
         width: Dimensions.get('window').width,
         position: 'absolute',
-      }
+      },
+      imageButton: {
+        borderWidth:1,
+        borderRadius: 100,
+        alignItems: 'center',
+        justifyContent: 'center',  
+      },
+      moneyText:{
+        color: 'black',
+        paddingLeft: 30,
+        fontWeight: 'bold',
+      },
+      incomeText:{
+        color: 'black',
+        paddingLeft: 30,
+        textAlign: 'center',
+        fontWeight: 'bold',
+      },
     });
 
     return (
@@ -115,16 +133,21 @@ class Restaurants extends Component {
         </View>
         <View style={styles.topContainer}>
           <View style={styles.leftSide}>
-            <Image source={require('../assets/income.png')} style={styles.incomeImage} />
+            <ImageBackground source={require('../assets/income.png')} style={styles.incomeImage}>
+                <Text style={styles.incomeText}>{this.props.wallet.TotalIncome}</Text>
+            </ImageBackground>
           </View>
           <View style={styles.rightSide}>
-            <Image source={require('../assets/money.png')} style={styles.moneyImage} />
+            <ImageBackground  source={require('../assets/money.png')} style={styles.moneyImage}>
+                <Text style={styles.moneyText}>{this.props.wallet.Money}</Text>
+            </ImageBackground>
           </View>
         </View>
         <View style={styles.navButt}>
-          <View style={styles.leftNav}>
+          <TouchableOpacity style={styles.button} onPress={() => this.nav("Home")} title="Home" >
+            <Image source={require('../assets/homeButton.png')} style={styles.imageButton} />
+          </TouchableOpacity>
             <Button onPress={() => this.nav("Collection")} title="Meal Collection" />
-          </View>
           <View style={styles.rightNav}>
             <Button onPress={() => this.nav("Builder")} title="Meal Builder" />
           </View>
