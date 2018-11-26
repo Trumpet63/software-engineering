@@ -78,8 +78,8 @@ class Boot extends React.Component {
     console.log('this.props: ', this.props);
     if (!this.props.wallet || !this.props.restaurants || !this.props.mealsAvailable || !this.props.navigation) {
       return (
-        <View>
-          <Text>Loading...</Text>
+        <View style={styles.container}>
+          <Image source={require('../assets/loading.gif')} />
         </View>
       );
     }
@@ -93,6 +93,12 @@ class Boot extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+  },
 });
 
 const mapStateToProps = state => ({ ...state });
