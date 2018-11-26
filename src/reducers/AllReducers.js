@@ -1,10 +1,12 @@
 import initReducers from './initReducers';
 import BuilderReducers from './BuilderReducers';
+import CollectionReducers from './CollectionReducers';
 
 const AllReducers = (state = {}, action) => {
   var arr = [
     initReducers(state, action),
     BuilderReducers(state, action),
+    CollectionReducers(state, action),
   ];
 
   var output = arr.filter((item) => {

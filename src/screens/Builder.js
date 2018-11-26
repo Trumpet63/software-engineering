@@ -6,9 +6,6 @@ import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image
 // Components
 import SummaryEditor from '../components/SummaryEditor'
 
-// Functions
-import { getAllMeals, getNewMeal, addMeal, removeMeal } from '../functions/meals';
-
 class Builder extends Component {
   nav = (navroute) => () => {
     this.props.navigation.navigate(navroute);
@@ -16,14 +13,15 @@ class Builder extends Component {
 
   constructor(props) {
     super(props);
-    //const clicked = this.props.navigation.getParam("clicked");
     this.state = {
       text: '',
       value: 1,
       button: '',
       selectedItem: {},
-      restaurant: props.navigation.getParam('selectedRestaurant'),
     };
+
+    this.rkey = props.selectedRestaurant || 0;
+    console.log('selected rest', this.rkey);
   }
 
   availableToSelectedItem = (meal, action) => {
@@ -36,64 +34,16 @@ class Builder extends Component {
 
   summaryToSelectedItem = (SummaryObject, action) => {
     this.setState({
-      selectedItem: SummaryObject.meal,
+      selectedItem: SummaryObject,
       button: action,
       value: SummaryObject.value,
     });
   }
 
-  addToMealSummary = () => {
-    if (this.state.selectedItem.name != null) {
-      if (this.props.restaurant.Summary.length < 3) {
-        this.props.dispatch({
-          type: 'AddToSummary',
-          Restaurant: this.state.restaurant,
-          SummaryObject: this.state.selectedItem,
-        });
-        this.setState({
-          selectedItem: {},
-          text: '',
-          value: 1,
-        });
-      }
-      else {
-        alert("Your meal summary is already full...");
-      }
-    }
-  }
-
-  removeFromMealSummary = () => {
-    if (this.state.selectedItem.name != null) {
-      this.props.dispatch({
-        type: 'RemoveFromSummary',
-        Restaurant: this.state.restaurant,
-        SummaryObject: this.state.selectedItem,
-      });
-      this.setState({
-        selectedItem: {},
-        value: 1,
-      });
-    }
-  }
-
-  updateMealSummary = () => {
-    if (this.state.selectedItem.name != null) {
-      this.props.dispatch({
-        type: 'UpdateSummaryObject',
-        Restaurant: this.state.restaurant,
-        SummaryObject: this.state.selectedItem,
-      });
-      this.setState({
-        selectedItem: {},
-        value: 1,
-      });
-    }
-  }
-
   resetMealSummary = () => {
     this.props.dispatch({
       type: 'ClearSummary',
-      Restaurant: this.state.restaurant,
+      Restaurant: this.props.restaurants[this.rkey],
     });
     this.setState({
       selectedItem: {},
@@ -101,26 +51,32 @@ class Builder extends Component {
   }
 
   render() {
+    if (!this.props.restaurants[this.rkey])
+      return (<View />);
     return (
       <View style={{ flex: 1 }}>
-        {this.state.selectedItem.meal && <SummaryEditor summaryObject={this.state.selectedItem} parent={this} state={this.state} />}
+        <Text>{this.props.restaurants[this.rkey].Title}</Text>
+        {this.state.selectedItem.meal &&
+          <SummaryEditor
+            summaryObject={this.state.selectedItem}
+            buttonType={this.state.button}
+            parent={this} />}
         <View style={styles.mealSummary}>
           <View style={styles.reset}>
-            <Button color='red' title='X' onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?',
-              [{ text: 'No' },
-              { text: 'Yes', onPress: () => { this.resetMealSummary() } }
+            <Button color='red' title='X'
+              onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?', [
+                { text: 'No' },
+                { text: 'Yes', onPress: () => { this.resetMealSummary() } }
               ])} />
           </View>
-          {this.state.restaurant &&
-            this.state.restaurant.Summary.map((summary, i) => {
-              return (<TouchableOpacity style={styles.Image}
-                key={i}
-                onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
-                <Image style={styles.Image}
-                  source={{ uri: summary.meal.image }} />
-              </TouchableOpacity>);
-            })
-          }
+          {this.props.restaurants[this.rkey].Summary.map((summary, i) => {
+            return (<TouchableOpacity style={styles.Image}
+              key={i}
+              onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
+              <Image style={styles.Image}
+                source={{ uri: summary.meal.image }} />
+            </TouchableOpacity>);
+          })}
         </View>
         <ScrollView style={styles.SecondContainerScrollView}>
           <View style={styles.SecondContainer}>

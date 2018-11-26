@@ -1,5 +1,10 @@
 const initReducers = (state = {}, action) => {
   switch (action.type) {
+    case 'SetSelectedRestaurant':
+      return {
+        ...state,
+        selectedRestaurant: action.payload,
+      };
     case 'ConnectNavigation':
       return {
         ...state,
