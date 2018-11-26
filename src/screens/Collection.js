@@ -38,12 +38,19 @@ class Collection extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.mainContainer}>
+        <View>
+            <Image source={require('../assets/Background.png')} style={styles.backImage} />
+        </View>
         {this.state.selectedItem.name &&
           <MealPreview meal={this.state.selectedItem} parent={this} />
         }
         <ScrollView style={styles.SecondContainerScrollView}>
-        <Button title='Buy A New Meal' onPress={() => this.buyNewMeal()} />
+          <View style={styles.buyMealButton}>
+            <TouchableOpacity style={styles.button} onPress={() => this.buyNewMeal()} >
+                <Image source={require('../assets/buyMealButton.png')} style={styles.imageButton} />
+            </TouchableOpacity>
+          </View>
           <View style={styles.SecondContainer}>
             {
               this.props.restaurants.map((restaurant) => {
@@ -84,7 +91,24 @@ class Collection extends Component {
 
 let Window = Dimensions.get('window');
 const styles = StyleSheet.create({
-  BuilderContainer: {
+
+  //The Whole Screen
+  mainContainer:{
+    flex:1,
+  },
+
+  backImage: {
+    width: Dimensions.get('window').width,
+    position: 'absolute',
+  },
+
+  buyMealButton:{
+    position: 'absolute',
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 3,
+    zIndex: 10,
   },
 
   FirstContainer: {
@@ -100,13 +124,16 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
 
+  //Holds the Meals
   SecondContainerScrollView: {
     position: 'relative',
     flexDirection: 'column',
     height: '30%',
-    backgroundColor: 'lightblue',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'grey',
     margin: 10,
-    borderWidth: 1,
   },
 
   SecondContainer: {
@@ -180,8 +207,10 @@ const styles = StyleSheet.create({
     height: 100,
     margin: 10,
     flexDirection: 'row',
-    backgroundColor: 'blue',
-    borderWidth: 3
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'grey',
   },
 
   Image: {
@@ -190,7 +219,11 @@ const styles = StyleSheet.create({
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'grey'
   },
+  
   NavigationBar:
   {
     width: '100%',

@@ -39,7 +39,7 @@ class Home extends Component {
       //Top of the screen locaiton of Money & Income
       topContainer: {
         width: wp('100%'),
-        height: hp('12%'),
+        height: hp('10%'),
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'rgba(52, 52, 52, 0.1)'

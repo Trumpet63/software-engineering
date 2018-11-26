@@ -1,7 +1,25 @@
 // Modules
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button, AsyncStorage, Alert, Slider, } from 'react-native';
+import { 
+  Text, 
+  View, 
+  ScrollView, 
+  TouchableOpacity, 
+  Dimensions, 
+  StyleSheet, 
+  Image, 
+  Button, 
+  AsyncStorage, 
+  Alert, 
+  Slider, 
+} from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from 'react-native-responsive-screen';
 
 // Components
 import SummaryEditor from '../components/SummaryEditor'
@@ -40,7 +58,7 @@ class Builder extends Component {
     });
   }
 
-  resetMealSummary = () => {
+  resettopContainer = () => {
     this.props.dispatch({
       type: 'ClearSummary',
       Restaurant: this.props.restaurants[this.rkey],
@@ -54,20 +72,26 @@ class Builder extends Component {
     if (!this.props.restaurants[this.rkey])
       return (<View />);
     return (
-      <View style={{ flex: 1 }}>
-        <Text>{this.props.restaurants[this.rkey].Title}</Text>
+      <View style={styles.mainContainer}>
+      <View>
+          <Image source={require('../assets/Background.png')} style={styles.backImage} />
+      </View>
+        <Text style={styles.resturantTitle}>
+          {this.props.restaurants[this.rkey].Title}
+        </Text>
         {this.state.selectedItem.meal &&
           <SummaryEditor
             summaryObject={this.state.selectedItem}
             buttonType={this.state.button}
             parent={this} />}
-        <View style={styles.mealSummary}>
+        <View style={styles.topContainer}>
           <View style={styles.reset}>
-            <Button color='red' title='X'
-              onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?', [
-                { text: 'No' },
-                { text: 'Yes', onPress: () => { this.resetMealSummary() } }
-              ])} />
+            <TouchableOpacity style={styles.button} onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?', [
+                { text: 'Yes', onPress: () => { this.resetMealSummary() } },
+                { text: 'No'}
+              ])} title="Restaurants" >
+              <Image source={require('../assets/resetButton.png')} style={styles.imageButton} />
+            </TouchableOpacity>
           </View>
           {this.props.restaurants[this.rkey].Summary.map((summary, i) => {
             return (<TouchableOpacity style={styles.Image}
@@ -106,7 +130,23 @@ class Builder extends Component {
 
 let Window = Dimensions.get('window');
 const styles = StyleSheet.create({
-  BuilderContainer: {
+
+//The Whole Screen
+  mainContainer:{
+    flex:1,
+  },
+
+  backImage: {
+    width: Dimensions.get('window').width,
+    position: 'absolute',
+  },
+
+  resturantTitle: {
+    fontWeight: 'bold',
+    fontSize: 21,
+    color: 'black',
+    textAlign: 'center',
+    padding: 5,
   },
 
   FirstContainer: {
@@ -119,16 +159,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'lightblue',
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 10,
   },
 
   SecondContainerScrollView: {
     position: 'relative',
     flexDirection: 'column',
-    height: '30%',
-    backgroundColor: 'lightblue',
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'grey',
     margin: 10,
-    borderWidth: 1,
   },
 
   SecondContainer: {
@@ -147,15 +190,24 @@ const styles = StyleSheet.create({
     left: 0
   },
 
+  //Top Container
+  topContainer: {
+    margin: 10,
+    width: wp('95%'),
+    height: hp('20%'),
+    flexDirection: 'row',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'grey'
+  },
+
   reset: {
     position: 'absolute',
-    height: 40,
-    width: 30,
-    top: 0,
     right: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 2,
+    padding: 3,
   },
 
   dropzone: {
@@ -196,14 +248,6 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed',
     borderRadius: 1,
     borderColor: 'black',
-  },
-
-  mealSummary: {
-    height: 100,
-    margin: 10,
-    flexDirection: 'row',
-    backgroundColor: 'blue',
-    borderWidth: 3
   },
 
   Image: {

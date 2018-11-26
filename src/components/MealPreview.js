@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Button, Dimensions, StyleSheet, Text } from 'react-native';
+import { View, Image, Button, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 
@@ -12,7 +12,9 @@ const MealPreview = (props) => {
   return (
     <View style={styles.FirstContainer}>
       <View style={styles.add_remove}>
-        <Button title='Cancel' onPress={deselectItem} />
+      <TouchableOpacity style={styles.button} title='Cancel' onPress={deselectItem} >
+        <Image source={require('../assets/cancelButton.png')} style={styles.cancelButton} />
+      </TouchableOpacity>
       </View>
       <View style={styles.dropzone}>
         <Image style={styles.Image}
@@ -68,20 +70,13 @@ const styles = StyleSheet.create({
   },
   add_remove: {
     position: 'absolute',
-    height: 100,
-    width: 100,
-    top: 0,
-    left: 0
+    height: 50,
+    width: 50,
+    top: 1,
+    left: 0,
+    alignItems: 'center'
   },
-  reset: {
-    position: 'absolute',
-    height: 40,
-    width: 30,
-    top: 0,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 2,
+  cancelButton: {
   },
   dropzone: {
     width: 80,
@@ -128,6 +123,9 @@ const styles = StyleSheet.create({
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'grey'
   },
   NavigationBar: {
     width: '100%',
