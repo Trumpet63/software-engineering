@@ -22,34 +22,15 @@ class Restaurants extends Component {
     rol();
   }
 
-  async componentWillMount() {
-    try {
-      var restaurants = await AsyncStorage.getItem('RESTAURANTS')
-      if (!restaurants) {
-        restaurants = initRestaurantData;
-      }
-      else {
-        restaurants = JSON.parse(restaurants);
-        console.log(restaurants);
-      }
-      this.setState({
-        restaurants: restaurants,
-      });
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
-
   componentDidMount() {
     loc(this);
   }
 
-  nav = (navroute) => () => {
+  nav(navroute) {
     this.props.navigation.navigate(navroute);
   }
 
-  alert = (message) => () => {
+  alert(message) {
     alert(`Continue playing to unlock this restaurant you must have an income of $${message.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`)
   }
 

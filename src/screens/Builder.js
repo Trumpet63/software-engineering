@@ -6,9 +6,6 @@ import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image
 // Components
 import SummaryEditor from '../components/SummaryEditor'
 
-// Functions
-import { getAllMeals, getNewMeal, addMeal, removeMeal } from '../functions/meals';
-
 class Builder extends Component {
   nav = (navroute) => () => {
     this.props.navigation.navigate(navroute);
