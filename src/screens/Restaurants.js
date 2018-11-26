@@ -136,6 +136,7 @@ class Restaurants extends Component {
               return (
                 <SelectableMenuTile
                   key={key}
+                  index={key}
                   title={restaurant.Title}
                   rincome={"Restaurant Income: $" + Number(restaurant.Income || 0).toFixed(2)}
                   restaurant={restaurant}

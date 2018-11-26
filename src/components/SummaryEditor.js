@@ -8,25 +8,62 @@ class SummaryEditor extends Component {
     this.state = ({
       value: props.summaryObject.value,
     });
+    const index = props.selectedRestaurant || 0;
+    this.restaurant = props.restaurants[index];
+  }
 
-    this.removeFromMealSummary = props.parent.removeFromMealSummary;
-    this.updateMealSummary = props.parent.updateMealSummary;
-    this.removeFromMealSummary = props.parent.addToMealSummary;
+  addToMealSummary = () => {
+    if (this.restaurant.Summary.length < 3) {
+      this.props.dispatch({
+        type: 'AddToSummary',
+        Restaurant: this.restaurant,
+        SummaryObject: this.props.summaryObject,
+      });
+      this.props.parent.setState({
+        selectedItem: {},
+        text: '',
+      });
+    }
+    else {
+      alert("Your meal summary is already full...");
+    }
+  }
+
+  removeFromMealSummary = () => {
+    this.props.dispatch({
+      type: 'RemoveFromSummary',
+      Restaurant: this.restaurant,
+      SummaryObject: this.props.summaryObject,
+    });
+    this.props.parent.setState({
+      selectedItem: {},
+    });
+  }
+
+  updateMealSummary = () => {
+    this.props.dispatch({
+      type: 'UpdateSummaryObject',
+      Restaurant: this.restaurant,
+      SummaryObject: this.props.summaryObject,
+    });
+    this.props.parent.setState({
+      selectedItem: {},
+    });
   }
 
   renderButton() {
-    if (this.props.state.button == 'remove') {
+    if (this.props.buttonType == 'remove') {
       return (
         <View style={styles.URView}>
-          <Button title='Remove' color='red' onPress={() => this.removeFromMealSummary} />
-          <Button title='Update' onPress={() => this.updateMealSummary} />
+          <Button title='Remove' color='red' onPress={this.removeFromMealSummary} />
+          <Button title='Update' onPress={this.updateMealSummary} />
         </View>
       );
     }
     else {
       return (
         <View style={styles.add_remove}>
-          <Button title='Add' onPress={() => this.addToMealSummary} />
+          <Button title='Add' onPress={this.addToMealSummary} />
         </View>
       );
     }
@@ -49,7 +86,7 @@ class SummaryEditor extends Component {
             value={this.props.summaryObject.value}
             step={0.1}
             onValueChange={(value) => this.setState({ value: value })}
-            onSlidingComplete={(value) => this.props.parent.setState({ selectedItem: {...this.props.parent.state.selectedItem, value: value }})}
+            onSlidingComplete={(value) => this.props.parent.setState({ selectedItem: { ...this.props.parent.state.selectedItem, value: value } })}
             style={{ width: 100 }}
           />
         </View>

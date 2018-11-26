@@ -58,7 +58,7 @@ class Boot extends React.Component {
 
     this.props.dispatch({
       type: 'ConnectNavigation',
-      payload: { ...this.props.navigation },
+      payload: this.props.navigation,
     });
     console.log('navigation set');
     console.log('Boot Load Complete', this.props);

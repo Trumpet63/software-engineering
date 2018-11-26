@@ -1,16 +1,17 @@
 const BuilderReducers = (state = {}, action) => {
   switch (action.type) {
     case 'AddToSummary':
+      console.log('Adding to summary');
       return {
         ...state,
 
         restaurants: [
           ...state.restaurants.map((restaurant) => {
-            if (restaurant === action.restaurant) {
+            if (restaurant.Title == action.Restaurant.Title) {
               return {
-                ...action.restaurant,
+                ...restaurant,
                 Summary: [
-                  ...action.restaurant.Summary,
+                  ...restaurant.Summary,
                   action.SummaryObject,
                 ]
               }
@@ -33,19 +34,17 @@ const BuilderReducers = (state = {}, action) => {
         ...state,
 
         mealsAvailable: [
-          {
-            ...action.SummaryObject.meal,
-          },
+          action.SummaryObject.meal,
           ...state.mealsAvailable,
         ],
 
         restaurants: [
           ...state.restaurants.map((restaurant) => {
-            if (restaurant === action.restaurant) {
+            if (restaurant.Title == action.Restaurant.Title) {
               return {
-                ...action.restaurant,
+                ...restaurant,
                 Summary: [
-                  ...action.restaurant.Summary.filter((SummaryObject) => {
+                  ...restaurant.Summary.filter((SummaryObject) => {
                     return SummaryObject.meal !== action.SummaryObject.meal;
                   })
                 ]
@@ -58,17 +57,17 @@ const BuilderReducers = (state = {}, action) => {
         ],
       };
 
-      case 'UpdateSummaryObject':
+    case 'UpdateSummaryObject':
       return {
         ...state,
 
         restaurants: [
           ...state.restaurants.map((restaurant) => {
-            if (restaurant === action.restaurant) {
+            if (restaurant.Title == action.Restaurant.Title) {
               return {
-                ...action.restaurant,
+                ...restaurant,
                 Summary: [
-                  ...action.restaurant.Summary.map((SummaryObject) => {
+                  ...restaurant.Summary.map((SummaryObject) => {
                     if (SummaryObject.meal === action.SummaryObject.meal)
                       return action.SummaryObject;
                     else
@@ -84,20 +83,20 @@ const BuilderReducers = (state = {}, action) => {
         ],
       }
 
-      case 'ClearSummary':
+    case 'ClearSummary':
       return {
         ...state,
 
         mealsAvailable: [
-          ...action.restaurant.Summary,
+          ...action.Restaurant.Summary.map((summary) => { return summary.meal; }),
           ...state.mealsAvailable,
         ],
 
         restaurants: [
           ...state.restaurants.map((restaurant) => {
-            if (restaurant === action.restaurant) {
+            if (restaurant.Title == action.Restaurant.Title) {
               return {
-                ...action.restaurant,
+                ...restaurant,
                 Summary: [],
               }
             }
