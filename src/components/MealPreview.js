@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Button, Dimensions, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
 const MealPreview = (props) => {
   const deselectItem = () => {
@@ -24,11 +25,11 @@ const MealPreview = (props) => {
         <Text>Sodium: {Math.round(props.meal.sodium)}</Text>
         <Text>Carbs: {Math.round(props.meal.carbs)}</Text>
         {props.meal.ingredients &&
-        <Text>Ingredients: {props.meal.ingredients &&
-          props.meal.ingredients.map((ingredient, i) => {
-            return ((i != 0) ? ', ' : '') + ingredient;
-          })
-        }</Text>
+          <Text>Ingredients: {props.meal.ingredients &&
+            props.meal.ingredients.map((ingredient, i) => {
+              return ((i != 0) ? ', ' : '') + ingredient;
+            })
+          }</Text>
         }
       </View>
     </View>
@@ -155,4 +156,4 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({ ...state });
 
-export default connect(mapStateToProps)(MealPreview);
+export default withNavigation(connect(mapStateToProps)(MealPreview));

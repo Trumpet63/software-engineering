@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 import {
 	widthPercentageToDP as wp,
 	heightPercentageToDP as hp,
@@ -118,4 +119,4 @@ class SelectableMenuTile extends Component {
 
 const mapStateToProps = state => ({ ...state });
 
-export default connect(mapStateToProps)(SelectableMenuTile);
+export default withNavigation(connect(mapStateToProps)(SelectableMenuTile));

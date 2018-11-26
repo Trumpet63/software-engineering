@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Button, Slider, Dimensions, StyleSheet, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
 class SummaryEditor extends Component {
   constructor(props) {
@@ -223,4 +224,4 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({ ...state });
 
-export default connect(mapStateToProps)(SummaryEditor);
+export default withNavigation(connect(mapStateToProps)(SummaryEditor));
