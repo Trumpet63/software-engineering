@@ -95,9 +95,8 @@ class SummaryEditor extends Component {
           <Text>Meal: {this.props.summaryObject.meal.name}</Text>
           <Text>Calories: {Math.round(this.props.summaryObject.meal.calories * this.props.summaryObject.value)}</Text>
           <Text>Protein: {Math.round(this.props.summaryObject.meal.protein * this.props.summaryObject.value)}</Text>
-          <Text>Sodium: {Math.round(this.props.summaryObject.meal.sodium * this.props.summaryObject.value)}</Text>
+          <Text>Fat: {Math.round(this.props.summaryObject.meal.fat * this.props.summaryObject.value)}</Text>
           <Text>Carbs: {Math.round(this.props.summaryObject.meal.carbs * this.props.summaryObject.value)}</Text>
-
         </View>
       </View>
     );

@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import { StackActions, NavigationActions } from 'react-navigation';
 
 // Functions
-import InitRestaurantData from '../data/RestaurantData';
+import RestaurantData from '../data/RestaurantData';
+import MealsAvailableData from '../data/MealsAvailableData';
 
-const emptyWallet = { TotalIncome: 0.0, Money: 0.0, };
+const emptyWallet = { totalIncome: 0.0, Money: 0.0, };
 
 class Boot extends React.Component {
   componentWillMount() {
@@ -28,7 +29,7 @@ class Boot extends React.Component {
 
     AsyncStorage.getItem('RESTAURANTS').then((results) => {
       if (results == null) {
-        var restaurants = InitRestaurantData;
+        var restaurants = RestaurantData;
         AsyncStorage.setItem('RESTAURANTS', JSON.stringify(restaurants));
       }
       else {
@@ -43,7 +44,7 @@ class Boot extends React.Component {
 
     AsyncStorage.getItem('MEALS_AVAILABLE').then((results) => {
       if (results == null) {
-        var meals = [];
+        var meals = MealsAvailableData;
         AsyncStorage.setItem('MEALS_AVAILABLE', JSON.stringify(meals));
       }
       else {

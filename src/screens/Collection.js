@@ -37,6 +37,7 @@ class Collection extends Component {
   }
 
   render() {
+    console.log(JSON.stringify(this.props.mealsAvailable));
     return (
       <View style={{ flex: 1 }}>
         {this.state.selectedItem.name &&
@@ -45,7 +46,7 @@ class Collection extends Component {
         <ScrollView style={styles.SecondContainerScrollView}>
         <Button title='Buy A New Meal' onPress={() => this.buyNewMeal()} />
           <View style={styles.SecondContainer}>
-            {
+            {this.props.restaurants &&
               this.props.restaurants.map((restaurant) => {
                 return restaurant.Summary.map((summary, i) => {
                   return (
