@@ -58,7 +58,7 @@ class Builder extends Component {
     });
   }
 
-  resettopContainer = () => {
+  resetTopContainer = () => {
     this.props.dispatch({
       type: 'ClearSummary',
       Restaurant: this.props.restaurants[this.rkey],
@@ -87,7 +87,7 @@ class Builder extends Component {
         <View style={styles.topContainer}>
           <View style={styles.reset}>
             <TouchableOpacity style={styles.button} onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?', [
-                { text: 'Yes', onPress: () => { this.resetMealSummary() } },
+                { text: 'Yes', onPress: () => { this.resetTopContainer() } },
                 { text: 'No'}
               ])} title="Restaurants" >
               <Image source={require('../assets/resetButton.png')} style={styles.imageButton} />
