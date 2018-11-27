@@ -117,7 +117,7 @@ class Restaurants extends Component {
           </View>
           <View style={styles.rightSide}>
             <ImageBackground source={require('../assets/money.png')} style={styles.moneyImage}>
-              <Text style={styles.moneyText}>{this.props.wallet.Money}</Text>
+              <Text style={styles.moneyText}>${this.props.wallet.Money}</Text>
             </ImageBackground>
           </View>
         </View>
