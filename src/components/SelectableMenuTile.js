@@ -12,6 +12,7 @@ import {
 
 // Functions
 import images from '../functions/restaurantImages';
+import numberWithCommas from '../functions/numberWithCommas';
 
 class SelectableMenuTile extends Component {
 	componentDidMount() {
@@ -23,11 +24,16 @@ class SelectableMenuTile extends Component {
 	}
 
 	nav() {
-		this.props.dispatch({
-			type: 'SetSelectedRestaurant',
-			payload: this.props.index,
-		});
-		this.props.navigation.navigate('Builder', { selectedRestaurant: this.props.index });
+		if (this.props.wallet.totalIncome < this.props.restaurant.MinIncome) {
+			alert('You must have an income of at least $' + numberWithCommas(this.props.restaurant.MinIncome));
+		}
+		else {
+			this.props.dispatch({
+				type: 'SetSelectedRestaurant',
+				payload: this.props.index,
+			});
+			this.props.navigation.navigate('Builder', { selectedRestaurant: this.props.index });
+		}
 	}
 
 	render() {
@@ -91,8 +97,17 @@ class SelectableMenuTile extends Component {
 				width: wp('26%'),
 				height: hp('19%'),
 				borderRadius: 5,
-			}
-		})
+			},
+			overlay: {
+				opacity: 0.7,
+				height: 130,
+				width: 400,
+				zIndex: 0,
+				position: 'absolute',
+				left: -60,
+				top: 0,
+			},
+		});
 		return (
 			<TouchableOpacity
 				onPress={() => this.nav()}
@@ -103,6 +118,7 @@ class SelectableMenuTile extends Component {
 							<Image style={styles.image} source={images[this.props.title]} />
 						</View>
 						<View style={styles.rightSide}>
+							{this.props.wallet.totalIncome < this.props.restaurant.MinIncome && <Image source={require('../assets/LockApp.png')} style={styles.overlay} />}
 							<View style={styles.topRight}>
 								<Text style={styles.title}>{this.props.title}</Text>
 							</View>
