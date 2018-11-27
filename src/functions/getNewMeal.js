@@ -35,24 +35,24 @@ async function getRecipeDetails(firstCall) {
 		ingredients: firstCall.ingredients && firstCall.ingredients.map((item) => { return cleanText(item) }),
 		directions: secondCall.data.ingredientLines && secondCall.data.ingredientLines.map((item) => { return cleanText(item) }),
 		calories: findNutritionValue(secondCall.data, 'ENERC_KCAL'),
+		fat: findNutritionValue(secondCall.data, 'FAT_KCAL'),
 		protein: findNutritionValue(secondCall.data, 'PROCNT'),
-		sodium: findNutritionValue(secondCall.data, 'NA'),
 		carbs: findNutritionValue(secondCall.data, 'CHOCDF'),
 	}
 	return recipe;
 }
 
 function getRecipeImage(recipe) {
-	if (recipe.images[0].hostedMediumUrl != undefined)
+	if (recipe.images[0].hostedSmallUrl != undefined)
+		return recipe.images[0].hostedSmallUrl;
+	else if (recipe.images[0].hostedMediumUrl != undefined)
 		return recipe.images[0].hostedMediumUrl;
 	else if (recipe.images[0].hostedLargeUrl != undefined)
 		return recipe.images[0].hostedLargeUrl;
-	else if (recipe.images[0].hostedSmallUrl != undefined)
-		return recipe.images[0].hostedSmallUrl;
 }
 
 function findNutritionValue(recipe, nutrient) {
-	var value = '';
+	var value = 0;
 	recipe.nutritionEstimates.forEach(function (item) {
 		if (item.attribute == nutrient)
 			value = item.value;

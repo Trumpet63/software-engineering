@@ -33,7 +33,7 @@ class Home extends Component {
 
   render() {
     const styles = StyleSheet.create({
-      mainContainer:{
+      mainContainer: {
 
       },
       //Top of the screen locaiton of Money & Income
@@ -53,7 +53,7 @@ class Home extends Component {
         width: 175,
         height: 50,
         alignItems: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'center',
       },
       rightSide: {
         flex: 2,
@@ -64,7 +64,7 @@ class Home extends Component {
         width: 175,
         height: 50,
         alignItems: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'center',
       },
       Text: {
         fontWeight: 'bold',
@@ -73,20 +73,20 @@ class Home extends Component {
         textAlign: 'center',
         padding: 5,
       },
-      moneyText:{
+      moneyText: {
         color: 'black',
         paddingLeft: 30,
         fontWeight: 'bold',
       },
-      incomeText:{
+      incomeText: {
         color: 'black',
         paddingLeft: 30,
         textAlign: 'center',
         fontWeight: 'bold',
       },
-      buttonText:{
+      buttonText: {
         color: 'white',
-        fontWeight: 'bold',  
+        fontWeight: 'bold',
         textAlign: 'center',
       },
       //Bottom of Screen
@@ -97,20 +97,20 @@ class Home extends Component {
         alignItems: 'center',
         justifyContent: 'space-between',
         bottom: -410,
-        padding:10,
+        padding: 10,
       },
       Image: {
         width: Dimensions.get('window').width,
         position: 'absolute',
       },
-      button: { 
-       alignItems:'center',
-       justifyContent:'center',
-       borderRadius:100,
+      button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 100,
       },
       imageButton: {
         alignItems: 'center',
-        justifyContent: 'center',  
+        justifyContent: 'center',
       }
     });
 
@@ -122,11 +122,11 @@ class Home extends Component {
         <View style={styles.topContainer}>
           <View style={styles.leftSide}>
             <ImageBackground source={require('../assets/income.png')} style={styles.incomeImage}>
-              <Text style={styles.incomeText}>{this.props.wallet.TotalIncome}</Text>
+              <Text style={styles.incomeText}>${this.props.wallet.totalIncome ? this.props.wallet.totalIncome.toFixed(2) : 0}</Text>
             </ImageBackground>
           </View>
           <View style={styles.rightSide}>
-            <ImageBackground  source={require('../assets/money.png')} style={styles.moneyImage}>
+            <ImageBackground source={require('../assets/money.png')} style={styles.moneyImage}>
               <Text style={styles.moneyText}>{this.props.wallet.Money}</Text>
             </ImageBackground>
           </View>

@@ -37,6 +37,7 @@ class Collection extends Component {
   }
 
   render() {
+    console.log(JSON.stringify(this.props.mealsAvailable));
     return (
       <View style={styles.mainContainer}>
         <View>
@@ -52,7 +53,7 @@ class Collection extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.SecondContainer}>
-            {
+            {this.props.restaurants &&
               this.props.restaurants.map((restaurant) => {
                 return restaurant.Summary.map((summary, i) => {
                   return (

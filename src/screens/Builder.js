@@ -93,18 +93,20 @@ class Builder extends Component {
               <Image source={require('../assets/resetButton.png')} style={styles.imageButton} />
             </TouchableOpacity>
           </View>
-          {this.props.restaurants[this.rkey].Summary.map((summary, i) => {
-            return (<TouchableOpacity style={styles.Image}
-              key={i}
-              onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
-              <Image style={styles.Image}
-                source={{ uri: summary.meal.image }} />
-            </TouchableOpacity>);
-          })}
+          {this.props.restaurants[this.rkey] &&
+            this.props.restaurants[this.rkey].Summary.map((summary, i) => {
+              return (<TouchableOpacity style={styles.Image}
+                key={i}
+                onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
+                <Image style={styles.Image}
+                  source={{ uri: summary.meal.image }} />
+              </TouchableOpacity>);
+            })
+          }
         </View>
         <ScrollView style={styles.SecondContainerScrollView}>
           <View style={styles.SecondContainer}>
-            {
+            {this.props.mealsAvailable &&
               this.props.mealsAvailable.map((meal, i) => {
                 return (
                   <TouchableOpacity

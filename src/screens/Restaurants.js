@@ -12,9 +12,6 @@ import {
 // Components
 import SelectableMenuTile from '../components/SelectableMenuTile';
 
-// Functions
-import initRestaurantData from '../data/RestaurantData';
-
 const foodItem = ["Build A Meal", "For this Restaurant", "And Increase Your Income"]
 
 class Restaurants extends Component {
@@ -64,7 +61,7 @@ class Restaurants extends Component {
         width: 175,
         height: 50,
         alignItems: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'center',
       },
       Text: {
         fontWeight: 'bold',
@@ -89,17 +86,17 @@ class Restaurants extends Component {
         position: 'absolute',
       },
       imageButton: {
-        borderWidth:1,
+        borderWidth: 1,
         borderRadius: 100,
         alignItems: 'center',
-        justifyContent: 'center',  
+        justifyContent: 'center',
       },
-      moneyText:{
+      moneyText: {
         color: 'black',
         paddingLeft: 30,
         fontWeight: 'bold',
       },
-      incomeText:{
+      incomeText: {
         color: 'black',
         paddingLeft: 30,
         textAlign: 'center',
@@ -115,12 +112,12 @@ class Restaurants extends Component {
         <View style={styles.topContainer}>
           <View style={styles.leftSide}>
             <ImageBackground source={require('../assets/income.png')} style={styles.incomeImage}>
-                <Text style={styles.incomeText}>{this.props.wallet.TotalIncome}</Text>
+            <Text style={styles.incomeText}>${this.props.wallet.totalIncome ? this.props.wallet.totalIncome.toFixed(2) : 0}</Text>
             </ImageBackground>
           </View>
           <View style={styles.rightSide}>
-            <ImageBackground  source={require('../assets/money.png')} style={styles.moneyImage}>
-                <Text style={styles.moneyText}>{this.props.wallet.Money}</Text>
+            <ImageBackground source={require('../assets/money.png')} style={styles.moneyImage}>
+              <Text style={styles.moneyText}>{this.props.wallet.Money}</Text>
             </ImageBackground>
           </View>
         </View>
@@ -128,7 +125,7 @@ class Restaurants extends Component {
           <TouchableOpacity style={styles.button} onPress={() => this.nav("Home")} title="Home" >
             <Image source={require('../assets/homeButton.png')} style={styles.imageButton} />
           </TouchableOpacity>
-            <Button onPress={() => this.nav("Collection")} title="Meal Collection" />
+          <Button onPress={() => this.nav("Collection")} title="Meal Collection" />
           <View style={styles.rightNav}>
             <Button onPress={() => this.nav("Builder")} title="Meal Builder" />
           </View>

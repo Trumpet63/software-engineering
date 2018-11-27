@@ -24,7 +24,7 @@ const MealPreview = (props) => {
         <Text>Meal: {props.meal.name}</Text>
         <Text>Calories: {Math.round(props.meal.calories)}</Text>
         <Text>Protein: {Math.round(props.meal.protein)}</Text>
-        <Text>Sodium: {Math.round(props.meal.sodium)}</Text>
+        <Text>Fat: {Math.round(props.meal.fat)}</Text>
         <Text>Carbs: {Math.round(props.meal.carbs)}</Text>
         {props.meal.ingredients &&
           <Text>Ingredients: {props.meal.ingredients &&
