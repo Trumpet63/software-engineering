@@ -11,6 +11,20 @@ import MealsAvailableData from '../data/MealsAvailableData';
 const emptyWallet = { totalIncome: 0.0, Money: 0.0, };
 
 class Boot extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timer: false,
+    }
+  }
+
+  componentDidMount() {
+    this._interval = setInterval(() => {
+      this.setState({ timer: true, });
+      clearInterval(this._interval);
+    }, 2000);
+  }
+
   componentWillMount() {
     AsyncStorage.getItem('WALLET').then((results) => {
       if (results == null) {
@@ -79,7 +93,7 @@ class Boot extends React.Component {
 
   render() {
     console.log('this.props: ', this.props);
-    if (!this.props.wallet || !this.props.restaurants || !this.props.mealsAvailable || !this.props.navigation) {
+    if (!this.state.timer || !this.props.wallet || !this.props.restaurants || !this.props.mealsAvailable || !this.props.navigation) {
       return (
         <View style={styles.container}>
           <Image source={require('../assets/loading.gif')} />
