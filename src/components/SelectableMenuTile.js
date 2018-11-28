@@ -40,7 +40,6 @@ class SelectableMenuTile extends Component {
 		const styles = StyleSheet.create({
 			touch: {
 				margin: 15,
-				overflow: 'hidden',
 			},
 			container: {
 				flex: 1,
