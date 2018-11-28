@@ -1,7 +1,21 @@
 // Modules
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, View, ScrollView, TouchableOpacity, Dimensions, StyleSheet, Image, Button } from 'react-native';
+import { Text, 
+  View, 
+  ScrollView, 
+  TouchableOpacity, 
+  Dimensions, 
+  StyleSheet, 
+  Image, 
+  Button,
+  ImageBackground } from 'react-native';
+  import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    listenOrientationChange as loc,
+    removeOrientationListener as rol
+  } from 'react-native-responsive-screen';
 
 // Components
 import MealPreview from '../components/MealPreview'
@@ -46,6 +60,18 @@ class Collection extends Component {
       <View style={styles.mainContainer}>
         <View>
             <Image source={require('../assets/Background.png')} style={styles.backImage} />
+        </View>
+        <View style={styles.topContainer}>
+          <View style={styles.leftSide}>
+            <ImageBackground source={require('../assets/income.png')} style={styles.incomeImage}>
+            <Text style={styles.incomeText}>${this.props.wallet.totalIncome ? this.props.wallet.totalIncome.toFixed(2) : 0}</Text>
+            </ImageBackground>
+          </View>
+          <View style={styles.rightSide}>
+            <ImageBackground source={require('../assets/money.png')} style={styles.moneyImage}>
+              <Text style={styles.moneyText}>${this.props.wallet.Money}</Text>
+            </ImageBackground>
+          </View>
         </View>
         {this.state.selectedItem.name &&
           <MealPreview meal={this.state.selectedItem} parent={this} />
@@ -105,6 +131,50 @@ const styles = StyleSheet.create({
   backImage: {
     width: Dimensions.get('window').width,
     position: 'absolute',
+  },
+
+  //Income and Money
+
+  topContainer: {
+    width: wp('100%'),
+    height: hp('10%'),
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'rgba(52, 52, 52, 0.1)'
+  },
+  leftSide: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  moneyImage: {
+    width: 175,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  rightSide: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  incomeImage: {
+    width: 175,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  moneyText: {
+    color: 'black',
+    paddingLeft: 30,
+    fontWeight: 'bold',
+  },
+  incomeText: {
+    color: 'black',
+    paddingLeft: 30,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 
   buyMealButton:{
