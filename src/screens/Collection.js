@@ -10,6 +10,10 @@ import MealPreview from '../components/MealPreview'
 import { getNewMeal } from '../functions/getNewMeal';
 
 class Collection extends Component {
+  static navigationOptions = {
+    title: 'Collection',
+  }
+  
   nav = (navroute) => () => {
     this.props.navigation.navigate(navroute);
   }

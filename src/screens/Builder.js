@@ -25,6 +25,10 @@ import {
 import SummaryEditor from '../components/SummaryEditor'
 
 class Builder extends Component {
+  static navigationOptions = {
+    title: 'Meal Builder',
+  }
+  
   nav = (navroute) => () => {
     this.props.navigation.navigate(navroute);
   }

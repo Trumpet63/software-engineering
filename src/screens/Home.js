@@ -19,6 +19,10 @@ import {
 } from 'react-native-responsive-screen';
 
 class Home extends Component {
+  static navigationOptions = {
+    title: 'Home',
+  }
+  
   componentWillUnMount() {
     rol();
   }

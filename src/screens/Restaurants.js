@@ -15,6 +15,10 @@ import SelectableMenuTile from '../components/SelectableMenuTile';
 const foodItem = ["Build A Meal", "For this Restaurant", "And Increase Your Income"]
 
 class Restaurants extends Component {
+  static navigationOptions = {
+    title: 'Resaurants',
+  }
+  
   componentWillUnMount() {
     rol();
   }
