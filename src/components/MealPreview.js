@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Button, Dimensions, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Button, Dimensions, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 
@@ -20,20 +20,21 @@ const MealPreview = (props) => {
         <Image style={styles.Image}
           source={{ uri: props.meal.image }} />
       </View>
-      <View style={styles.liveDisplay}>
-        <Text>Meal: {props.meal.name}</Text>
-        <Text>Calories: {Math.round(props.meal.calories)}</Text>
-        <Text>Protein: {Math.round(props.meal.protein)}</Text>
-        <Text>Fat: {Math.round(props.meal.fat)}</Text>
-        <Text>Carbs: {Math.round(props.meal.carbs)}</Text>
+      <ScrollView style={styles.liveDisplay}>
+        <Text style={styles.mealText}>Meal: </Text><Text>{props.meal.name}</Text>
+        <Text style={styles.mealText}>Calories: </Text><Text>{Math.round(props.meal.calories)}</Text>
+        <Text style={styles.mealText}>Protein: </Text><Text>{Math.round(props.meal.protein)}</Text>
+        <Text style={styles.mealText}>Fat: </Text><Text>{Math.round(props.meal.fat)}</Text>
+        <Text style={styles.mealText}>Carbs: </Text><Text>{Math.round(props.meal.carbs)}</Text>
+        <Text style={styles.mealText}>Ingredients:</Text>
         {props.meal.ingredients &&
-          <Text>Ingredients: {props.meal.ingredients &&
+          <Text>{props.meal.ingredients &&
             props.meal.ingredients.map((ingredient, i) => {
               return ((i != 0) ? ', ' : '') + ingredient;
             })
           }</Text>
         }
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -50,8 +51,9 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'lightblue',
-    borderWidth: 1
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    borderWidth: 2,
+    borderRadius: 10,
   },
   SecondContainerScrollView: {
     position: 'relative',
@@ -105,10 +107,10 @@ const styles = StyleSheet.create({
     width: 200,
     position: 'absolute',
     right: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 4,
-    borderStyle: 'dashed',
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'grey',
   },
   mealSummary: {
     height: 100,
@@ -150,6 +152,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     resizeMode: 'cover',
   },
+  mealText:{
+    fontWeight: 'bold',
+  }
 });
 
 const mapStateToProps = state => ({ ...state });
