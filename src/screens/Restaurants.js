@@ -16,9 +16,9 @@ const foodItem = ["Build A Meal", "For this Restaurant", "And Increase Your Inco
 
 class Restaurants extends Component {
   static navigationOptions = {
-    title: 'Resaurants',
+    title: 'Restaurants',
   }
-  
+
   componentWillUnMount() {
     rol();
   }
