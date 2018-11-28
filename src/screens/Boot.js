@@ -4,11 +4,10 @@ import { View, StyleSheet, Dimensions, Image, Text, AsyncStorage } from 'react-n
 import { connect } from 'react-redux';
 import { StackActions, NavigationActions } from 'react-navigation';
 
-// Functions
+// Data Functions
 import RestaurantData from '../data/RestaurantData';
 import MealsAvailableData from '../data/MealsAvailableData';
-
-const emptyWallet = { totalIncome: 0.0, Money: 0.0, };
+import emptyWallet from '../data/emptyWallet';
 
 class Boot extends React.Component {
   constructor(props) {

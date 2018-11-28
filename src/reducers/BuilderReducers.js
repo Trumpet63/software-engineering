@@ -3,7 +3,7 @@ const BuilderReducers = (state = {}, action) => {
     case 'AddToSummary':
       console.log('Adding to summary');
       var RestaurantIncome = NewRestaurantIncome('add', action.SummaryObject, action.Restaurant);
-      var TotalIncome = (state.wallet.totalIncome || 0 ) + (RestaurantIncome || 0 ) - (action.Restaurant.RestaurantIncome || 0 );
+      var TotalIncome = (state.wallet.totalIncome || 0) + (RestaurantIncome || 0) - (action.Restaurant.RestaurantIncome || 0);
       return {
         ...state,
         wallet: {
@@ -37,7 +37,7 @@ const BuilderReducers = (state = {}, action) => {
 
     case 'RemoveFromSummary':
       var RestaurantIncome = NewRestaurantIncome('remove', action.SummaryObject, action.Restaurant);
-      var TotalIncome = (state.wallet.totalIncome || 0 ) + (RestaurantIncome || 0 ) - (action.Restaurant.RestaurantIncome || 0 );
+      var TotalIncome = (state.wallet.totalIncome || 0) + (RestaurantIncome || 0) - (action.Restaurant.RestaurantIncome || 0);
       return {
         ...state,
         wallet: {
@@ -70,7 +70,7 @@ const BuilderReducers = (state = {}, action) => {
 
     case 'UpdateSummaryObject':
       var RestaurantIncome = NewRestaurantIncome('update', action.SummaryObject, action.Restaurant);
-      var TotalIncome = (state.wallet.totalIncome || 0 ) + (RestaurantIncome || 0 ) - (action.Restaurant.RestaurantIncome || 0 );
+      var TotalIncome = (state.wallet.totalIncome || 0) + (RestaurantIncome || 0) - (action.Restaurant.RestaurantIncome || 0);
       return {
         ...state,
         wallet: {
@@ -102,7 +102,7 @@ const BuilderReducers = (state = {}, action) => {
 
     case 'ClearSummary':
       var RestaurantIncome = 0;
-      var TotalIncome = (state.wallet.totalIncome || 0 ) + (RestaurantIncome || 0 ) - (action.Restaurant.RestaurantIncome || 0 );
+      var TotalIncome = (state.wallet.totalIncome || 0) + (RestaurantIncome || 0) - (action.Restaurant.RestaurantIncome || 0);
       return {
         ...state,
         wallet: {
@@ -136,50 +136,57 @@ const BuilderReducers = (state = {}, action) => {
 }
 
 const NewRestaurantIncome = (action, TargetSummaryObject, Restaurant) => {
-  var income = 0;
+  var summary = new nutritionEstimate();
+
   switch (action) {
     case 'add':
       Restaurant.Summary.forEach(summaryObject => {
-        income += getMealScore(summaryObject);
+        summary.add(summaryObject);
       });
-      income += getMealScore(TargetSummaryObject);
-      return income;
+      summary.add(TargetSummaryObject);
+      return summary.getScore();
+
     case 'remove':
       Restaurant.Summary.forEach(summaryObject => {
         if (TargetSummaryObject.meal.name != summaryObject.meal.name)
-          income += getMealScore(summaryObject);
+          summary.add(summaryObject);
       });
-      income += getMealScore(TargetSummaryObject);
-      return income;
+      return summary.getScore();
+
     case 'update':
       Restaurant.Summary.forEach(summaryObject => {
         if (TargetSummaryObject.meal.name == summaryObject.meal.name)
-          income += getMealScore(TargetSummaryObject);
+          summary.add(TargetSummaryObject);
         else
-          income += getMealScore(summaryObject);
+          summary.add(summaryObject);
       });
-      income += getMealScore(TargetSummaryObject);
-      return income;
+      return summary.getScore();
+
     default:
       return 0;
   }
 }
 
-const getMealScore = (summaryObject) => {
-  var nutritionEstimates = getNutritionEstimates(summaryObject);
-  console.log(nutritionEstimates);
-  var mealScore = getRating(nutritionEstimates);
-  console.log('meal score', mealScore);
-  return mealScore;
-}
-
-const getNutritionEstimates = (summaryObject) => {
-  return {
-    totalCal: summaryObject.meal.calories * summaryObject.value,
-    fatCal: summaryObject.meal.fat * summaryObject.value,
-    carbCal: summaryObject.meal.carbs * summaryObject.value,
-    proteinCal: summaryObject.meal.protein * summaryObject.value,
-  };
+class nutritionEstimate {
+  constructor() {
+    this.numOfMeals = 0;
+    this.arr = {
+      totalCal: 0,
+      fatCal: 0,
+      carbCal: 0,
+      proteinCal: 0,
+    }
+  }
+  add(summaryObject) {
+    this.numOfMeals++;
+    this.arr.totalCal += summaryObject.meal.calories * summaryObject.value;
+    this.arr.fatCal += summaryObject.meal.fat * summaryObject.value;
+    this.arr.carbCal += summaryObject.meal.carbs * summaryObject.value;
+    this.arr.proteinCal += summaryObject.meal.protein * summaryObject.value;
+  }
+  getScore() {
+    return getRating(this.arr);
+  }
 }
 
 const getRating = (nutritionEstimates) => {

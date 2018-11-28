@@ -59,6 +59,7 @@ class SelectableMenuTile extends Component {
 			rightSide: {
 				flex: 3,
 				flexDirection: 'column',
+				overflow: 'hidden',
 			},
 			//Top of the Right Side
 			topRight: {
@@ -100,7 +101,7 @@ class SelectableMenuTile extends Component {
 			},
 			overlay: {
 				opacity: 0.7,
-				height: 130,
+				height: '100%',
 				width: 400,
 				zIndex: 0,
 				position: 'absolute',

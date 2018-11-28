@@ -14,20 +14,15 @@ class SummaryEditor extends Component {
   }
 
   addToMealSummary = () => {
-    if (this.restaurant.Summary.length < 3) {
-      this.props.dispatch({
-        type: 'AddToSummary',
-        Restaurant: this.restaurant,
-        SummaryObject: this.props.summaryObject,
-      });
-      this.props.parent.setState({
-        selectedItem: {},
-        text: '',
-      });
-    }
-    else {
-      alert("Your meal summary is already full...");
-    }
+    this.props.dispatch({
+      type: 'AddToSummary',
+      Restaurant: this.restaurant,
+      SummaryObject: this.props.summaryObject,
+    });
+    this.props.parent.setState({
+      selectedItem: {},
+      text: '',
+    });
   }
 
   removeFromMealSummary = () => {

@@ -25,6 +25,16 @@ const initReducers = (state = {}, action) => {
         ...state,
         mealsAvailable: action.payload,
       };
+    case 'UpdateMoney':
+      return {
+        ...state,
+        wallet: {
+          ...state.wallet,
+          Money: {
+            ...action.payload,
+          }
+        },
+      };
     default:
       return state;
   }
