@@ -18,6 +18,9 @@ import {
   removeOrientationListener as rol
 } from 'react-native-responsive-screen';
 
+// Functions
+import updateMoney from '../functions/updateMoney';
+
 class Home extends Component {
   static navigationOptions = {
     title: 'Home',
@@ -25,10 +28,14 @@ class Home extends Component {
   
   componentWillUnMount() {
     rol();
+    clearInterval(this._updateMoneyInterval);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     loc(this);
+    this._updateMoneyInterval = setInterval(() => {
+      updateMoney(this.props);
+    }, 3000);
   }
 
   nav = (navroute) => {
@@ -131,7 +138,7 @@ class Home extends Component {
           </View>
           <View style={styles.rightSide}>
             <ImageBackground source={require('../assets/money.png')} style={styles.moneyImage}>
-              <Text style={styles.moneyText}>{this.props.wallet.Money}</Text>
+              <Text style={styles.moneyText}>${this.props.wallet.Money.value}</Text>
             </ImageBackground>
           </View>
         </View>
