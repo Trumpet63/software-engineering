@@ -192,8 +192,8 @@ class nutritionEstimate {
 const getRating = (nutritionEstimates) => {
   const totalCalTarget = 2000;
   const fatCalTarget = 0.268 * 2000;
-  const carbCalTarget = 0.512 * 2000; // TODO fix value
-  const proteinCalTarget = 0.22 * 2000; // TODO fix value
+  const carbCalTarget = 0.512 * 2000;
+  const proteinCalTarget = 0.22 * 2000;
 
   var raw = 0;
   raw += calorieScore(nutritionEstimates["totalCal"], totalCalTarget);
