@@ -35,7 +35,7 @@ class Home extends Component {
     loc(this);
     this._updateMoneyInterval = setInterval(() => {
       updateMoney(this.props);
-    }, 3000);
+    }, 200);
   }
 
   nav = (navroute) => {
