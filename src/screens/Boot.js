@@ -70,14 +70,13 @@ class Boot extends React.Component {
       console.log('meals available set');
     });
 
-    /*
-    this.props.dispatch({
-      type: 'ConnectNavigation',
-      payload: this.props.navigation,
-    });
-    */
     console.log('navigation set');
     console.log('Boot Load Complete', this.props);
+  }
+
+  componentDidUpdate() {
+    if (this.state.timer && this.props.wallet && this.props.restaurants && this.props.mealsAvailable && this.props.navigation)
+      this.nav('Home');
   }
 
   nav(target) {
@@ -91,18 +90,9 @@ class Boot extends React.Component {
   }
 
   render() {
-    console.log('this.props: ', this.props);
-    if (!this.state.timer || !this.props.wallet || !this.props.restaurants || !this.props.mealsAvailable || !this.props.navigation) {
-      return (
-        <View style={styles.container}>
-          <Image source={require('../assets/loading.gif')} />
-        </View>
-      );
-    }
-
     return (
-      <View>
-        {this.nav('Home')}
+      <View style={styles.container}>
+        <Image source={require('../assets/loading.gif')} />
       </View>
     );
   }
