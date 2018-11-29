@@ -265,19 +265,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
-  liveDisplay: {
-    height: 150,
-    width: 200,
-    position: 'absolute',
-    right: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 4,
-    borderStyle: 'dashed',
-    borderRadius: 1,
-    borderColor: 'black',
-  },
-
   mealSummary: {
     height: 100,
     margin: 10,

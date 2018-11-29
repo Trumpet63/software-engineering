@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
   SecondContainerScrollView: {
     position: 'relative',
     flexDirection: 'column',
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
     backgroundColor: 'rgba(255, 255, 255, 0.6)',
     borderWidth: 2,
     borderRadius: 10,
