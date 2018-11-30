@@ -107,7 +107,7 @@ class Home extends Component {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        bottom: -410,
+        top: '100%',
         padding: 10,
       },
       Image: {
