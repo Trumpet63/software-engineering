@@ -125,15 +125,6 @@ class Restaurants extends Component {
             </ImageBackground>
           </View>
         </View>
-        <View style={styles.navButt}>
-          <TouchableOpacity style={styles.button} onPress={() => this.nav("Home")} title="Home" >
-            <Image source={require('../assets/homeButton.png')} style={styles.imageButton} />
-          </TouchableOpacity>
-          <Button onPress={() => this.nav("Collection")} title="Meal Collection" />
-          <View style={styles.rightNav}>
-            <Button onPress={() => this.nav("Builder")} title="Meal Builder" />
-          </View>
-        </View>
         <ScrollView scrollEnabled={true} showVerticalScrollIndicator={true} keyboardDismissMode='on-drag' keyboardShouldPersistTaps={'true'}>
           {this.props.restaurants &&
             this.props.restaurants.map((restaurant, key) => {
