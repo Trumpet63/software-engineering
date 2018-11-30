@@ -1,18 +1,18 @@
 // Modules
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { 
-  Text, 
-  View, 
-  ScrollView, 
-  TouchableOpacity, 
-  Dimensions, 
-  StyleSheet, 
-  Image, 
-  Button, 
-  AsyncStorage, 
-  Alert, 
-  Slider, 
+import {
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Dimensions,
+  StyleSheet,
+  Image,
+  Button,
+  AsyncStorage,
+  Alert,
+  Slider,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -28,7 +28,7 @@ class Builder extends Component {
   static navigationOptions = {
     title: 'Meal Builder',
   }
-  
+
   nav = (navroute) => () => {
     this.props.navigation.navigate(navroute);
   }
@@ -77,9 +77,9 @@ class Builder extends Component {
       return (<View />);
     return (
       <View style={styles.mainContainer}>
-      <View>
+        <View>
           <Image source={require('../assets/Background.png')} style={styles.backImage} />
-      </View>
+        </View>
         <Text style={styles.resturantTitle}>
           {this.props.restaurants[this.rkey].Title}
         </Text>
@@ -87,26 +87,29 @@ class Builder extends Component {
           <SummaryEditor
             summaryObject={this.state.selectedItem}
             buttonType={this.state.button}
-            parent={this} />}
+            parent={this} />
+        }
         <View style={styles.topContainer}>
           <View style={styles.reset}>
-            <TouchableOpacity style={styles.button} onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?', [
-                { text: 'Yes', onPress: () => { this.resetTopContainer() } },
-                { text: 'No'}
-              ])} title="Restaurants" >
+            <TouchableOpacity style={{...styles.button, zIndex: 10,}} onPress={() => Alert.alert('Alert', 'Are you sure you want to reset meals?', [
+              { text: 'Yes', onPress: () => { this.resetTopContainer() } },
+              { text: 'No' }
+            ])} title="Restaurants" >
               <Image source={require('../assets/resetButton.png')} style={styles.imageButton} />
             </TouchableOpacity>
           </View>
-          {this.props.restaurants[this.rkey] &&
-            this.props.restaurants[this.rkey].Summary.map((summary, i) => {
-              return (<TouchableOpacity style={styles.Image}
-                key={i}
-                onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
-                <Image style={styles.Image}
-                  source={{ uri: summary.meal.image }} />
-              </TouchableOpacity>);
-            })
-          }
+          <ScrollView horizontal={true} contentContainerStyle={{zIndex: 0,}}>
+            {this.props.restaurants[this.rkey] &&
+              this.props.restaurants[this.rkey].Summary.map((summary, i) => {
+                return (<TouchableOpacity style={styles.Image}
+                  key={i}
+                  onPress={() => (this.summaryToSelectedItem(summary, 'remove'))}>
+                  <Image style={styles.Image}
+                    source={{ uri: summary.meal.image }} />
+                </TouchableOpacity>);
+              })
+            }
+          </ScrollView>
         </View>
         <ScrollView style={styles.SecondContainerScrollView}>
           <View style={styles.SecondContainer}>
@@ -137,9 +140,9 @@ class Builder extends Component {
 let Window = Dimensions.get('window');
 const styles = StyleSheet.create({
 
-//The Whole Screen
-  mainContainer:{
-    flex:1,
+  //The Whole Screen
+  mainContainer: {
+    flex: 1,
   },
 
   backImage: {
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
   topContainer: {
     margin: 10,
     width: wp('95%'),
-    height: hp('20%'),
+    height: hp('15%'),
     flexDirection: 'row',
     backgroundColor: 'rgba(255, 255, 255, 0.6)',
     borderWidth: 2,
