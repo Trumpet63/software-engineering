@@ -145,7 +145,7 @@ class Home extends Component {
         <View style={styles.navButt}>
           <TouchableOpacity style={styles.button} onPress={() => this.nav("Restaurants")} title="Restaurants" >
             <Image source={require('../assets/resturantsButton.png')} style={styles.imageButton} />
-            <Text style={styles.buttonText}>Resturants</Text>
+            <Text style={styles.buttonText}>Restaurants</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => this.nav("Builder")} title="Builder" >
             <Image source={require('../assets/builderButton.png')} style={styles.imageButton} />
