@@ -1,0 +1,4 @@
+#Fri Nov 30 11:00:18 EST 2018
+base.0=C\:\\Users\\NOCon\\Desktop\\School\\software\\software-engineering\\android\\app\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex
