@@ -124,7 +124,7 @@ class SelectableMenuTile extends Component {
 								<Text style={styles.title}>{this.props.title}</Text>
 							</View>
 							<View style={styles.botRight}>
-								<Text style={styles.resturantIncome}>{this.props.rincome}</Text>
+								<Text style={styles.resturantIncome}>Restaurant Income: ${this.props.restaurant.RestaurantIncome ? parseFloat(this.props.restaurant.RestaurantIncome).toFixed(2) : 0.00}</Text>
 							</View>
 						</View>
 					</View>
